@@ -10,11 +10,11 @@ class PageRenderer
     private $stringLoader;
 
 
-    public function __construct( $factory, $page, $language )
+    public function __construct( $factory, $pageName, $language )
     {
 	$this->site = $factory->makeSite();
-	$this->page = $factory->makePage( $page );
-	$this->stringLoader = $factory->makeStringLoader( $page, $language );
+	$this->page = $factory->makePage( $pageName );
+	$this->stringLoader = $factory->makeStringLoader( $pageName, $language );
     }
 
 
@@ -30,9 +30,15 @@ class PageRenderer
 
     public function getArticle()
     {
-	$rawArticle = $this->page->getArticle();
+	$article = $this->page->getArticle();
+    	foreach( $this->stringLoader->getAllNames() as $name ) {
+	    $value = $this->stringLoader->getString( $name );
 
-	return "Article";
+	    // use preg_replace to match ${`$name`} or $`$name`
+            $article = preg_replace(sprintf('/\$\{?%s\}?/', $name), $value, $article);
+    	}
+        // return variable expanded string
+        return $article;
     }
 
 }

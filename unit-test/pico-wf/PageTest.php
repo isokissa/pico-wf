@@ -22,7 +22,7 @@ class PageTest extends PHPUnit_Framework_TestCase
 
     public function testGetArticle()
     {
-	$this->assertEquals( '${str1}<a href="google.com">google</a>${str2}', $this->page->getArticle() );
+	$this->assertEquals( '${str1} <a href="google.com">google</a> ${str2}', $this->page->getArticle() );
     }
 
 }
