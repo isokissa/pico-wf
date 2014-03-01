@@ -12,6 +12,8 @@ abstract class StringLoader
 
     abstract public function getString( $name );
 
+    abstract public function getAllNames();
+
 }
 
 class StringLoaderLanguageNotFoundException extends Exception {}

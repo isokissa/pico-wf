@@ -10,13 +10,7 @@ require_once( dirname(__FILE__)."/pico-wf/DummyFactory.php" );
 require_once( dirname(__FILE__)."/pico-wf/PageRenderer.php" );
 
 $factory = new DummyFactory();
-
-$site = $factory->makeSite();
-$page = $factory->makePage( $_GET["page"] );
-$stringLoader = $factory->makeStringLoader( $_GET["page"], $_GET["lang"] );
-
-$pageRenderer = new PageRenderer( $site, $page, $stringLoader );
-
+$pageRenderer = new PageRenderer( $factory, $_GET["page"], $_GET["lang"] );
 
 
 echo "<title>". $pageRenderer->getTitle()."</title>"; 

@@ -1,5 +1,7 @@
 <?php
 
+require_once( "Factory.php" );
+
 class PageRenderer 
 {
     
@@ -8,17 +10,17 @@ class PageRenderer
     private $stringLoader;
 
 
-    public function __construct( $site, $page, $stringLoader )
+    public function __construct( $factory, $page, $language )
     {
-	$this->site = $site;
-	$this->page = $page;
-	$this->stringLoader = $stringLoader;
+	$this->site = $factory->makeSite();
+	$this->page = $factory->makePage( $page );
+	$this->stringLoader = $factory->makeStringLoader( $page, $language );
     }
 
 
     public function getTitle()
     {
-	return $this->stringLoader->getString( "TITLE" );
+	return htmlspecialchars( $this->stringLoader->getString( "TITLE" ) );
     }
 
     public function getMenu()
@@ -28,6 +30,8 @@ class PageRenderer
 
     public function getArticle()
     {
+	$rawArticle = $this->page->getArticle();
+
 	return "Article";
     }
 

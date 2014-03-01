@@ -44,6 +44,13 @@ class DummyStringLoader extends StringLoader
 	}
     }
 
+
+    public function getAllNames()
+    {
+	return array( 'TITLE', 'SHORT_NAME', 'str1', 'str2' );
+    }
+
+
 }
 
 ?>

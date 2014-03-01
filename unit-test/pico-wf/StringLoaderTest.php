@@ -29,6 +29,17 @@ class StringLoaderTest extends PHPUnit_Framework_TestCase
 	$this->assertEquals( 'First', $this->stringLoader->getString( 'SHORT_NAME' ) );
     }
 
+    public function testGetAllNames()
+    {
+	$allStringNames = $this->stringLoader->getAllNames();
+	$this->assertTrue( in_array( 'str1', $allStringNames ));
+	$this->assertTrue( in_array( 'str2', $allStringNames ));
+	$this->assertTrue( in_array( 'TITLE', $allStringNames ));
+	$this->assertTrue( in_array( 'SHORT_NAME', $allStringNames ));
+        $this->assertCount( 4, $allStringNames );
+	
+    }
+
 }
 
 ?>
