@@ -6,7 +6,12 @@ require_once( "site/pico-wf/Factory.php" );
 class FactoryTest extends PHPUnit_Framework_TestCase
 {
 
-    protected $factory; /* instantiated by child class */
+    protected $factory; 
+
+    protected function setUp()
+    {
+	$this->factory = $GLOBALS["wfFactory"];
+    }
 
     public function testConstruct()
     {

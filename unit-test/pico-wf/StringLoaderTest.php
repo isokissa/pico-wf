@@ -1,12 +1,19 @@
 <?php
 
+
+require_once( "site/pico-wf/Factory.php" );
 require_once( "site/pico-wf/StringLoader.php" );
 
 
 class StringLoaderTest extends PHPUnit_Framework_TestCase
 {
 
-    protected $stringLoader; /* to be initialized by subclass to "page1", "en" */
+    protected $stringLoader; 
+
+    protected function setUp()
+    {
+	$this->stringLoader = $GLOBALS["wfFactory"]->makeStringLoader( "page1", "en" );
+    }
 
 
     public function testConstruct()

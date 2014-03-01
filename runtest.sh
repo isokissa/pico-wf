@@ -1,1 +1,1 @@
-php phpunit.phar --verbose unit-test/pico-wf/
+php phpunit.phar --verbose --bootstrap unit-test/pico-wf/InitStub.php unit-test/pico-wf/

@@ -2,12 +2,12 @@
 
 require_once( "StringLoader.php" );
 
-class DummyStringLoader extends StringLoader
+class StubStringLoader extends StringLoader
 {
 
     private $pageName;
     private $language;
-    private $dummyValues;
+    private $stubValues;
 
 
     public function init( $pageName, $language )
@@ -17,7 +17,7 @@ class DummyStringLoader extends StringLoader
 	}
 	$this->pageName = $pageName; 
 	$this->language = $language;
-	$this->dummyValues = array( 
+	$this->stubValues = array( 
 	    'en' => array( 
 	        'TITLE' => 'Page One',
                 'SHORT_NAME' => 'First',
@@ -36,8 +36,8 @@ class DummyStringLoader extends StringLoader
 
     public function getString( $name )
     {
-	if( isset( $this->dummyValues[ $this->language ][ $name ] ) ){
-	    return $this->dummyValues[ $this->language ][ $name ];
+	if( isset( $this->stubValues[ $this->language ][ $name ] ) ){
+	    return $this->stubValues[ $this->language ][ $name ];
 	}
 	else{
 	    throw new StringLoaderStringNotFoundException( $name );

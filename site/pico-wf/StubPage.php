@@ -3,11 +3,11 @@
 require_once( "Page.php" );
 
 
-class DummyPage extends Page
+class StubPage extends Page
 {
     protected $pageName; 
 
-    private $dummyValues;
+    private $stubValues;
 
     protected function init( $pageName )
     {
@@ -15,7 +15,7 @@ class DummyPage extends Page
 	    throw new PageNotFoundException();
 	}
 	$this->pageName = $pageName;
-	$this->dummyValues = array(
+	$this->stubValues = array(
     	    "page1" => '${str1}<a href="google.com">google</a>${str2}',
 	    "page2" => 'nothing yet',
         );
@@ -23,7 +23,7 @@ class DummyPage extends Page
 
     public function getArticle()
     {
-	return $this->dummyValues[ $this->pageName ];
+	return $this->stubValues[ $this->pageName ];
     }
 
 

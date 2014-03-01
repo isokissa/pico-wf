@@ -6,7 +6,12 @@ require_once( "site/pico-wf/Page.php" );
 class PageTest extends PHPUnit_Framework_TestCase
 {
 
-    protected $page; /* to be initialized by subclass to "page1" */
+    protected $page;
+
+    protected function setUp()
+    {
+	$this->page = $GLOBALS["wfFactory"]->makePage( "page1" );
+    }
 
     
     public function testConstruct()
