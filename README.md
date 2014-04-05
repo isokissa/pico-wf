@@ -57,18 +57,25 @@ Development Environment
   not polute any other directory with files. Because of that, find php
   cli directly from lampp directory: "/opt/lampp/bin/php"
 
-* for convenience, include the /opt/lampp/bin/ into PATH: 
-
+* for convenience, include the /opt/lampp/bin/ into PATH (the same is 
+  also done in setup.sh): 
 
     PATH=$PATH:/opt/lampp/bin/
 
-
 * to initialize the development environment, do:
 
-
     source setup.sh
+
+* to download different dependent 3rd party libraries, including phpunit, 
+  use composer. To get composer go to http://getcomposer.org and follow the 
+  instructions. Once Composer is downloaded and installed, run: 
+
+    php composer.phar update
+
 
 The Development Principle(s)
 ---------------
 
-Test-Driven Development is in use and [phpunit](https://github.com/sebastianbergmann/phpunit phpunit) unit-testing framework. 
+Test-Driven Development is in use and [phpunit](https://github.com/sebastianbergmann/phpunit phpunit) unit-testing framework. To run all tests, type:
+
+    sh runtest.sh     
