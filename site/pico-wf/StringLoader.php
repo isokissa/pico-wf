@@ -5,7 +5,7 @@ abstract class StringLoader
 
     public function __construct( $pageName, $language )
     {
-	$this->init( $pageName, $language );
+        $this->init( $pageName, $language );
     }
 
     abstract protected function init( $pageName, $language );

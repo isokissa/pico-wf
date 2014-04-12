@@ -5,7 +5,7 @@ abstract class Page
 
     public function __construct( $pageName )
     {
-	$this->init( $pageName );
+        $this->init( $pageName );
     }
 
 
