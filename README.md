@@ -29,7 +29,7 @@ a site which is not complete.
 The *contents* directory contains. 
 
 * look&feel template (css)
-* the pages
+* the "pages", those are logical structures of text, *not* a html or php pages. 
 * multilingual strings for all pages
 
 Look at the *site* directory for example. Make your own contents by imitating
@@ -76,6 +76,10 @@ Development Environment
 The Development Principle(s)
 ---------------
 
-Test-Driven Development is in use and [phpunit](https://github.com/sebastianbergmann/phpunit phpunit) unit-testing framework. To run all tests, type:
+Test-Driven Development is in use and [phpunit](https://github.com/sebastianbergmann/phpunit phpunit) 
+unit-testing framework. So if you want to contribute, first write a failing test
+and only then the implementation which makes the test pass. 
+
+To run all tests, type:
 
     sh runtest.sh     
