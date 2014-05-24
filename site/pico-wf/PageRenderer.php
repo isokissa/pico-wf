@@ -23,10 +23,12 @@ class PageRenderer
         return htmlspecialchars( $this->stringLoader->getString( "TITLE" ) );
     }
 
+
     public function getMenu()
     {
         return "Menu";
     }
+
 
     public function getArticle()
     {
