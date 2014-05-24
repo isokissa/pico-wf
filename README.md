@@ -12,14 +12,14 @@ Usage
 
 Directory structure of a site based on pico-wf:  
 
-*index.php*  -- homepage, provided by pico-wf
-*pico-wf/*   -- directory containing the code for pico-wf
-*contents/*  -- content provided by user
+* *index.php*  -- homepage, provided by pico-wf
+* *pico-wf/*   -- directory containing the code for pico-wf
+* *contents/*  -- content provided by user
 
-The user is supposed to first navigate to index.php page. The code on that page will 
+The user is supposed to first navigate to *index.php* page. The code on that page will 
 check the *contents* directory and find all pages. It will also find out all supported
 languages and will make sure that all strings for all pages are avialable in all 
-supported languages. If this is not the case, index.php will show error message and
+supported languages. If this is not the case, *index.php* will show error message and
 refuse to continue. This way, the author of the site is not allowed to productize 
 a site which is not complete. 
 
@@ -29,7 +29,7 @@ a site which is not complete.
 The *contents* directory contains. 
 
 * look&feel template (css)
-* the "pages", those are logical structures of text, *not* a html or php pages. 
+* the "pages", those are logical structures of text, *not* a html or php pages.     
 * multilingual strings for all pages
 
 Look at the *site* directory for example. Make your own contents by imitating
@@ -40,10 +40,36 @@ language-independent contents with references to multilingual strings.
 Multilingual strings have to be defined in all supported languages. 
 
 There are few strings that must exist in every page: 
- * __TITLE__, will be shown in browser's title-bar, but also as hint for menu items
- * __SHORT_NAME__, which will be used in visible menu items
+
+* __TITLE__, will be shown in browser's title-bar, but also as hint for menu items
+* __SHORT_NAME__, will be used in visible menu items
 
 
+### Page file format
+
+Page file names have the following format. 
+
+    <identifier>.pg
+    
+<identifier> is going to be the identifier of the page. Page file contains 
+plain text of the page, with references to the multilingual strings. The plain 
+text will be literaly shown to the user, while reference to the multilingual strings
+will be replaced with strings in appropriate language. For example, the page with 
+contents: 
+
+
+    ${str1} <a href="google.com">${str2}</a> 
+
+will be rendered as: 
+
+    For search <a href="google.com">use Google</a>
+    
+when strings are defined as: 
+
+    str1: "For search"
+    str2: "use Google"
+
+### Mutlilingual strings file format
 
 
 
@@ -74,7 +100,7 @@ Development Environment
 
 
 The Development Principle(s)
----------------
+----------------------------
 
 Test-Driven Development is in use and [phpunit](https://github.com/sebastianbergmann/phpunit phpunit) 
 unit-testing framework. So if you want to contribute, first write a failing test

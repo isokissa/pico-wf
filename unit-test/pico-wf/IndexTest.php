@@ -10,7 +10,7 @@ class IndexTest extends PHPUnit_Framework_TestCase
 	$_GET = array();
 	$_GET["page"] = "page1";
 	$_GET["lang"] = "en";
-	include( "site/index.php" );
+	include( $GLOBALS["wfTestPage"] );
     }
 
 
@@ -20,7 +20,7 @@ class IndexTest extends PHPUnit_Framework_TestCase
 	$_GET = array();
 	$_GET["page"] = "page1";
 	$_GET["lang"] = "fi";	
-	include( "site/index.php" );
+	include( $GLOBALS["wfTestPage"] );
     }
 
 }
