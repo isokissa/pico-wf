@@ -8,6 +8,8 @@ class PageRenderer
     private $site;
     private $page; 
     private $stringLoader;
+    private $language;
+    private $factory;
 
 
     public function __construct( $factory, $pageName, $language )
@@ -15,6 +17,8 @@ class PageRenderer
         $this->site = $factory->makeSite();
         $this->page = $factory->makePage( $pageName );
         $this->stringLoader = $factory->makeStringLoader( $pageName, $language );
+        $this->factory = $factory;
+        $this->language = $language;
     }
 
 
@@ -26,7 +30,14 @@ class PageRenderer
 
     public function getMenu()
     {
-        return "Menu";
+        $pages = $this->site->getAllPages();
+        ksort( $pages );
+        $result = "";
+        foreach( $pages as $pageName => $page ){
+            $localStringLoader = $this->factory->makeStringLoader( $pageName, $this->language );
+            $result = $result.'<nav class="menuitem">'.$localStringLoader->getString( 'SHORT_NAME' ).'</nav>';
+        }
+        return $result;
     }
 
 

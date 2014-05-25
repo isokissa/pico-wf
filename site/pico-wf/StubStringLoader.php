@@ -9,7 +9,6 @@ class StubStringLoader extends StringLoader
     private $language;
     private $stubValues;
 
-
     public function init( $pageName, $language )
     {
 	if( $language !== "en" && $language !== "fi" ){
@@ -17,7 +16,7 @@ class StubStringLoader extends StringLoader
 	}
 	$this->pageName = $pageName; 
 	$this->language = $language;
-	$this->stubValues = array( 
+	$this->stubValues[ 'page1' ] = array( 
 	    'en' => array( 
 	        'TITLE' => 'Page One',
                 'SHORT_NAME' => 'First',
@@ -31,13 +30,25 @@ class StubStringLoader extends StringLoader
 		'str2' => 'toinen testi teksti',
 	    ),
 	);
+	$this->stubValues[ 'page2' ] = array( 
+	    'en' => array( 
+	        'TITLE' => 'Page two',
+                'SHORT_NAME' => 'Second',
+		'mystr' => 'test string number two',
+	    ),
+	    'fi' => array(
+	    	'TITLE' => 'Toinen sivu',
+		'SHORT_NAME' => 'Toinen',
+		'mystr' => 'toinen testi stringgi :) ',
+	    ),
+	);
     }
 
 
     public function getString( $name )
     {
-	if( isset( $this->stubValues[ $this->language ][ $name ] ) ){
-	    return $this->stubValues[ $this->language ][ $name ];
+	if( isset( $this->stubValues[ $this->pageName ][ $this->language ][ $name ] ) ){
+	    return $this->stubValues[ $this->pageName ][ $this->language ][ $name ];
 	}
 	else{
 	    throw new StringLoaderStringNotFoundException( $name );
@@ -47,7 +58,7 @@ class StubStringLoader extends StringLoader
 
     public function getAllNames()
     {
-	return array( 'TITLE', 'SHORT_NAME', 'str1', 'str2' );
+	return array_keys( $this->stubValues[ $this->pageName ][ $this->language ] );
     }
 
 

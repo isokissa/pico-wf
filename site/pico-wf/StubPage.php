@@ -17,7 +17,7 @@ class StubPage extends Page
 	$this->pageName = $pageName;
 	$this->stubValues = array(
     	    "page1" => '${str1} <a href="google.com">google</a> ${str2}',
-	    "page2" => 'nothing yet',
+	    "page2" => '${mystr} mystr',
         );
     }
 
