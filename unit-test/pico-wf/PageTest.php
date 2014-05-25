@@ -6,7 +6,8 @@ require_once( "site/pico-wf/Page.php" );
 class PageTest extends PHPUnit_Framework_TestCase
 {
 
-    protected $page;
+    protected $page1;
+    protected $page2;
 
     protected function setUp()
     {

@@ -1,6 +1,6 @@
 <?php
 
-require_once( "Page.php" );
+require_once( "site/pico-wf/Page.php" );
 
 
 class StubPage extends Page

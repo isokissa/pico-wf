@@ -1,6 +1,6 @@
 <?php
 
-require_once( "Site.php" );
+require_once( "site/pico-wf/Site.php" );
 
 
 class StubSite extends Site

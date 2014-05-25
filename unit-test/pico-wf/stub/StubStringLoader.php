@@ -1,6 +1,6 @@
 <?php
 
-require_once( "StringLoader.php" );
+require_once( "site/pico-wf/StringLoader.php" );
 
 class StubStringLoader extends StringLoader
 {

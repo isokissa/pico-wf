@@ -1,8 +1,8 @@
 <?php
 
-require_once( "site/pico-wf/StubFactory.php" );
+require_once( "unit-test/pico-wf/stub/StubFactory.php" );
 
 $wfFactory = new StubFactory();
-$wfTestPage = "site/index-stub.php";
+$wfTestPage = "unit-test/pico-wf/stub/index-stub.php";
 
 ?>

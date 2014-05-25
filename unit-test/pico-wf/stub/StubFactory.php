@@ -1,6 +1,6 @@
 <?php
 
-require_once( "Factory.php" );
+require_once( "site/pico-wf/Factory.php" );
 require_once( "StubSite.php" );
 require_once( "StubPage.php" );
 require_once( "StubStringLoader.php" );
