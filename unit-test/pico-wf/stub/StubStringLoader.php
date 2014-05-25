@@ -5,16 +5,16 @@ require_once( "site/pico-wf/StringLoader.php" );
 class StubStringLoader extends StringLoader
 {
 
-    private $pageName;
+    private $pageId;
     private $language;
     private $stubValues;
 
-    public function init( $pageName, $language )
+    public function init( $pageId, $language )
     {
 	if( $language !== "en" && $language !== "fi" ){
 	    throw new StringLoaderLanguageNotFoundException( $language );
 	}
-	$this->pageName = $pageName; 
+	$this->pageId = $pageId; 
 	$this->language = $language;
 	$this->stubValues[ 'page1' ] = array( 
 	    'en' => array( 
@@ -47,8 +47,8 @@ class StubStringLoader extends StringLoader
 
     public function getString( $name )
     {
-	if( isset( $this->stubValues[ $this->pageName ][ $this->language ][ $name ] ) ){
-	    return $this->stubValues[ $this->pageName ][ $this->language ][ $name ];
+	if( isset( $this->stubValues[ $this->pageId ][ $this->language ][ $name ] ) ){
+	    return $this->stubValues[ $this->pageId ][ $this->language ][ $name ];
 	}
 	else{
 	    throw new StringLoaderStringNotFoundException( $name );
@@ -58,7 +58,7 @@ class StubStringLoader extends StringLoader
 
     public function getAllNames()
     {
-	return array_keys( $this->stubValues[ $this->pageName ][ $this->language ] );
+	return array_keys( $this->stubValues[ $this->pageId ][ $this->language ] );
     }
 
 

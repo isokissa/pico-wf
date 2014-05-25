@@ -3,13 +3,13 @@
 abstract class Page 
 {
 
-    public function __construct( $pageName )
+    public function __construct( $pageId )
     {
-        $this->init( $pageName );
+        $this->init( $pageId );
     }
 
 
-    abstract protected function init( $pageName );
+    abstract protected function init( $pageId );
 
     abstract public function getArticle();
 

@@ -3,12 +3,12 @@
 abstract class StringLoader 
 {
 
-    public function __construct( $pageName, $language )
+    public function __construct( $pageId, $language )
     {
-        $this->init( $pageName, $language );
+        $this->init( $pageId, $language );
     }
 
-    abstract protected function init( $pageName, $language );
+    abstract protected function init( $pageId, $language );
 
     abstract public function getString( $name );
 
