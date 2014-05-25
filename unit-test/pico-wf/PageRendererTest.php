@@ -30,6 +30,14 @@ class PageRendererTest extends PHPUnit_Framework_TestCase
 	$this->assertEquals( $expectedString, $this->pageRenderer->getArticle() );
     }
 
+    public function testGetMenu()
+    {
+	$expectedString = $str = '<nav class="menuitem">First</nav>'.
+				 '<nav class="menuitem">Second</nav>';
+	$this->assertEquals( $expectedString, $this->pageRenderer->getMenu() );
+    }
+
+
 
 }
 

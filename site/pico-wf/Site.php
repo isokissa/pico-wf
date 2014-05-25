@@ -8,8 +8,7 @@
 abstract class Site 
 {
 
-    
-
+    abstract public function getAllPages();
 
 }
 

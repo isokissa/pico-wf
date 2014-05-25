@@ -1,7 +1,7 @@
 pico-wf
 =======
 
-__pico-wf__ is a minimalistic multilingual web framework. Using pico-wf you can create 
+__pico-wf__ is a minimalistic multilingual web framework. Using pico-wf one can create 
 simple web sites with multilingual pages. Each of pages contains the main 
 menu with links to other pages. A page can contain articles, which may be written in 
 multiple languages. Once multiple languages are introduced, the framework will require 
@@ -47,13 +47,8 @@ There are few strings that must exist in every page:
 
 ### Page file format
 
-Page file names have the following format. 
-
-    <identifier>.pg
-    
-<identifier> is going to be the identifier of the page. Page file contains 
-plain text of the page, with references to the multilingual strings. The plain 
-text will be literaly shown to the user, while reference to the multilingual strings
+Page file contains plain text of the page, with references to the multilingual strings. 
+The plain text will be literaly shown to the user, while reference to the multilingual strings
 will be replaced with strings in appropriate language. For example, the page with 
 contents: 
 
@@ -69,6 +64,17 @@ when strings are defined as:
     str1: "For search"
     str2: "use Google"
 
+
+
+Page file names have the following format. 
+
+    <identifier>.pg
+    
+*identifier* is going to be the identifier of the page. Items in the menu
+will be sorted by page *identifier*, and by chosing the right page identifiers the
+user can influence the order of menu options. 
+
+
 ### Mutlilingual strings file format
 
 
@@ -76,25 +82,25 @@ when strings are defined as:
 Development Environment
 -----------------------
 
-* I have used XAMPP bundle to get PHP5.5, Apache httpd and MySQL.
-  Type "/opt/lampp/lampp start" to start, and browse to URL http://localhost
+I have used XAMPP bundle to get PHP5.5, Apache httpd and MySQL.
+Type "/opt/lampp/lampp start" to start, and browse to URL http://localhost
 
-* lampp is very good, it will install everything in /opt/lampp, and will
-  not polute any other directory with files. Because of that, find php
-  cli directly from lampp directory: "/opt/lampp/bin/php"
+*lampp* is very convenient, it will install everything in /opt/lampp, and will
+not polute any other directory with files. Because of that, find php
+cli directly from lampp directory: "/opt/lampp/bin/php"
 
-* for convenience, include the /opt/lampp/bin/ into PATH (the same is 
-  also done in setup.sh): 
+For convenience, include the /opt/lampp/bin/ into PATH (the same is also 
+done in setup.sh): 
 
     PATH=$PATH:/opt/lampp/bin/
 
-* to initialize the development environment, do:
+To initialize the development environment, do:
 
     source setup.sh
 
-* to download different dependent 3rd party libraries, including phpunit, 
-  use composer. To get composer go to http://getcomposer.org and follow the 
-  instructions. Once Composer is downloaded and installed, run: 
+To download different dependent 3rd party libraries, including phpunit, 
+use composer. To get composer go to http://getcomposer.org and follow the 
+instructions. Once Composer is downloaded and installed, run: 
 
     php composer.phar update
 
@@ -103,7 +109,7 @@ The Development Principle(s)
 ----------------------------
 
 Test-Driven Development is in use and [phpunit](https://github.com/sebastianbergmann/phpunit phpunit) 
-unit-testing framework. So if you want to contribute, first write a failing test
+unit-testing framework. If you want to contribute, first write a failing test
 and only then the implementation which makes the test pass. 
 
 To run all tests, type:
