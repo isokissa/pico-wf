@@ -32,11 +32,9 @@ class FactoryTest extends PHPUnit_Framework_TestCase
     }
 
 
-    /**
-    * @expectedException PageNotFoundException
-    */
     public function testMakePageNotFound()
     {
+	$this->setExpectedException( "PageNotFoundException" );
 	$this->assertInstanceOf( "Page", $this->factory->makePage( "blabla" ) );
     }
 
@@ -47,9 +45,6 @@ class FactoryTest extends PHPUnit_Framework_TestCase
     }
 
 
-    /**
-    * @expectedException StringLoaderLanguageNotFoundException
-    */
     public function testMakeStringLoaderLanguageNotFound()
     {
 	$this->setExpectedException( "StringLoaderLanguageNotFoundException", "de" );

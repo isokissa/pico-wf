@@ -13,8 +13,8 @@ class StubFactory implements Factory
     	return new StubSite();
     }
 
-    public function makePage( $pageName ){
-    	return new StubPage( $pageName );
+    public function makePage( $pageId ){
+    	return new StubPage( $pageId );
     }
 
     public function makeStringLoader( $page, $language ){

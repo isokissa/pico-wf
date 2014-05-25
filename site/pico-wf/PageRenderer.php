@@ -12,11 +12,11 @@ class PageRenderer
     private $factory;
 
 
-    public function __construct( $factory, $pageName, $language )
+    public function __construct( $factory, $pageId, $language )
     {
         $this->site = $factory->makeSite();
-        $this->page = $factory->makePage( $pageName );
-        $this->stringLoader = $factory->makeStringLoader( $pageName, $language );
+        $this->page = $factory->makePage( $pageId );
+        $this->stringLoader = $factory->makeStringLoader( $pageId, $language );
         $this->factory = $factory;
         $this->language = $language;
     }
@@ -33,11 +33,19 @@ class PageRenderer
         $pages = $this->site->getAllPages();
         ksort( $pages );
         $result = "";
-        foreach( $pages as $pageName => $page ){
-            $localStringLoader = $this->factory->makeStringLoader( $pageName, $this->language );
-            $result = $result.'<nav class="menuitem">'.$localStringLoader->getString( 'SHORT_NAME' ).'</nav>';
+        foreach( $pages as $pageId => $page ){
+            $localStringLoader = $this->factory->makeStringLoader( $pageId, $this->language );
+            $result = $result.$this->getMenuItem( $pageId, $localStringLoader->getString( 'SHORT_NAME' ) );
         }
         return $result;
+    }
+    
+    private function getMenuItem( $pageId, $pageShortName )
+    {
+        return '<nav class="menuitem"><a href="index.php?'.
+               'page='.$pageId.
+               '&lang='.$this->language.
+               '">'.$pageShortName.'</a></nav>';
     }
 
 
