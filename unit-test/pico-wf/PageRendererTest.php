@@ -32,13 +32,17 @@ class PageRendererTest extends PHPUnit_Framework_TestCase
 
     public function testGetMenu()
     {
-	$expectedString = $str = '<nav class="menuitem"><a href="index.php?page=page1&lang=en">First</a></nav>'.
-				 '<nav class="menuitem"><a href="index.php?page=page2&lang=en">Second</a></nav>';
+	$expectedString =  '<nav class="menuitem"><a href="index.php?page=page1&lang=en">First</a></nav>'.
+			   '<nav class="menuitem"><a href="index.php?page=page2&lang=en">Second</a></nav>';
 	$this->assertEquals( $expectedString, $this->pageRenderer->getMenu() );
     }
 
-
-
+    public function testGetLanguageSelector()
+    {
+	$expectedString = '<nav class="language"><a href="index.php?page=page1&lang=en">English</a></nav>'.
+			  '<nav class="language"><a href="index.php?page=page1&lang=fi">Suomi</a></nav>';
+	$this->assertEquals( $expectedString, $this->pageRenderer->getLanguageSelector() );
+    }
 }
 
 ?>

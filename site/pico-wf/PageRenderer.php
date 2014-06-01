@@ -49,6 +49,27 @@ class PageRenderer
     }
 
 
+    public function getLanguageSelector()
+    {
+        $languages = $this->site->getAllLanguages();
+        ksort( $languages );
+        $result = ""; 
+        foreach( $languages as $languageId => $language ){
+            $result = $result.$this->getLanguageSelectorItem( $language->id, $language->name );
+        }
+        return $result;
+    }
+
+    private function getLanguageSelectorItem( $languageId, $languageName )
+    {
+        return '<nav class="language"><a href="index.php?'.
+               'page='.$this->page->getId().
+               '&lang='.$languageId.
+               '">'.$languageName.'</a></nav>';
+
+    }
+
+
     public function getArticle()
     {
         $article = $this->page->getArticle();
@@ -61,6 +82,8 @@ class PageRenderer
         // return variable expanded string
         return $article;
     }
+
+
 
 }
 

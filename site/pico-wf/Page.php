@@ -10,6 +10,8 @@ abstract class Page
 
 
     abstract protected function init( $pageId );
+    
+    abstract protected function getId();
 
     abstract public function getArticle();
 

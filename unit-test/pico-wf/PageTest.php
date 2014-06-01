@@ -20,6 +20,7 @@ class PageTest extends PHPUnit_Framework_TestCase
     {
 	$this->assertInstanceOf( "Page", $this->page1 );
 	$this->assertInstanceOf( "Page", $this->page2 );
+	$this->assertEquals( "page1", $this->page1->getId() );
     }
 
 
