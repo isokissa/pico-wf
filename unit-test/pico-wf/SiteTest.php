@@ -25,6 +25,12 @@ class SiteTest extends PHPUnit_Framework_TestCase
 	$this->assertCount( 2, $pages );
     }
 
+    public function testGetAllLanguages()
+    {
+	$languages = $this->site->getAllLanguages();
+	$this->assertCount( 2, $languages );
+    }
+
 
 }
 

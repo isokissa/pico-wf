@@ -5,25 +5,30 @@ require_once( "site/pico-wf/Page.php" );
 
 class StubPage extends Page
 {
-    protected $pageName; 
+    protected $id; 
 
     private $stubValues;
 
-    protected function init( $pageName )
+    protected function init( $pageId )
     {
-	if( $pageName !== "page1" && $pageName !== "page2" ){
+	if( $pageId !== "page1" && $pageId !== "page2" ){
 	    throw new PageNotFoundException();
 	}
-	$this->pageName = $pageName;
+	$this->id = $pageId;
 	$this->stubValues = array(
     	    "page1" => '${str1} <a href="google.com">google</a> ${str2}',
 	    "page2" => '${mystr} mystr',
         );
     }
 
+    public function getId()
+    {
+	return $this->id;
+    }
+
     public function getArticle()
     {
-	return $this->stubValues[ $this->pageName ];
+	return $this->stubValues[ $this->id ];
     }
 
 
