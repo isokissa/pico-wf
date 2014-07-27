@@ -27,7 +27,7 @@ class StringLoaderTest extends PHPUnit_Framework_TestCase
     public function testGetStringNotFound()
     {
 	$this->setExpectedException( "StringLoaderStringNotFoundException", "fail" );
-	$this->assertEquals( 'fail', $this->stringLoader1->getString( 'fail' ) );
+	$this->stringLoader1->getString( 'fail' );
     }
 
 
