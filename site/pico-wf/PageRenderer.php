@@ -4,29 +4,24 @@ require_once( "Factory.php" );
 
 class PageRenderer 
 {
-    
     private $site;
     private $page; 
-    private $stringLoader;
-    private $language;
-    private $factory;
+    private $languageId;
 
-
-    public function __construct( $factory, $pageId, $language )
+    public function __construct( $site, $pageId, $languageId )
     {
-        $this->site = $factory->makeSite();
-        $this->page = $factory->makePage( $pageId );
-        $this->stringLoader = $factory->makeStringLoader( $pageId, $language );
-        $this->factory = $factory;
-        $this->language = $language;
+        $this->site = $site;
+        $this->page = $this->site->getPage( $pageId );
+ 		if( !array_key_exists( $languageId, $this->site->getAllLanguages() ) ){
+			throw new SitePageLanguageNotFoundException( $languageId );
+		}
+        $this->languageId = $languageId;
     }
-
 
     public function getTitle()
     {
-        return htmlspecialchars( $this->stringLoader->getString( "TITLE" ) );
+        return htmlspecialchars( $this->page->getStringInLanguage( "TITLE", $this->languageId ) );
     }
-
 
     public function getMenu()
     {
@@ -34,8 +29,8 @@ class PageRenderer
         ksort( $pages );
         $result = "";
         foreach( $pages as $pageId => $page ){
-            $localStringLoader = $this->factory->makeStringLoader( $pageId, $this->language );
-            $result = $result.$this->getMenuItem( $pageId, $localStringLoader->getString( 'SHORT_NAME' ) );
+            $shortName =  $page->getStringInLanguage( 'SHORT_TITLE', $this->languageId );
+            $result = $result.$this->getMenuItem( $pageId, $shortName );
         }
         return $result;
     }
@@ -44,10 +39,9 @@ class PageRenderer
     {
         return '<nav class="menuitem"><a href="index.php?'.
                'page='.$pageId.
-               '&lang='.$this->language.
+               '&lang='.$this->languageId.
                '">'.$pageShortName.'</a></nav>';
     }
-
 
     public function getLanguageSelector()
     {
@@ -66,15 +60,13 @@ class PageRenderer
                'page='.$this->page->getId().
                '&lang='.$languageId.
                '">'.$languageName.'</a></nav>';
-
     }
-
 
     public function getArticle()
     {
-        $article = $this->page->getArticle();
-    	foreach( $this->stringLoader->getAllNames() as $name ) {
-            $value = $this->stringLoader->getString( $name );
+        $article = $this->page->getStringInLanguage( "CONTENTS", $this->languageId );
+    	foreach( $this->page->getAllStringNames() as $name ) {
+            $value = $this->page->getString( $name );
 
             // use preg_replace to match ${`$name`} or $`$name`
             $article = preg_replace(sprintf('/\$\{?%s\}?/', $name), $value, $article);
@@ -82,9 +74,6 @@ class PageRenderer
         // return variable expanded string
         return $article;
     }
-
-
-
 }
 
 

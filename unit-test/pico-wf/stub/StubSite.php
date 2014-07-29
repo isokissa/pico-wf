@@ -1,6 +1,7 @@
 <?php
 
 require_once( "site/pico-wf/Site.php" );
+require_once( "StubPage.php" );
 
 
 class StubSite extends Site
@@ -17,17 +18,28 @@ class StubSite extends Site
 		$this->languages = [ "en" => new Language( "en", "English" ),
 							 "fi" => new Language( "fi", "Suomi" ) ];
 	}
+    
+    public function getPage( $pageId ){
+		if( !array_key_exists( $pageId, $this->pages ) ){
+			throw new SitePageNotFoundException( $pageId );
+		}
+		return $this->pages[ $pageId ];
+    }
 
-	public function getAllPages()
+    public function getPageRenderer( $pageId, $language ){
+    	return new PageRenderer( $this, $pageId, $language );
+    }
+
+    public function getAllPages()
 	{
 		return $this->pages;
 	}
-	
+
 	public function getAllLanguages()
 	{
 		return $this->languages;
 	}
-
+	
 }
 
 ?>

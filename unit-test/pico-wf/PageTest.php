@@ -11,8 +11,9 @@ class PageTest extends PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-	$this->page1 = $GLOBALS["wfFactory"]->makePage( "page1" );
-	$this->page2 = $GLOBALS["wfFactory"]->makePage( "page2" );
+	$site = $GLOBALS["wfFactory"]->makeSite();
+	$this->page1 = $site->getPage( "page1" );
+	$this->page2 = $site->getPage( "page2" );
     }
 
     
@@ -22,12 +23,28 @@ class PageTest extends PHPUnit_Framework_TestCase
 	$this->assertInstanceOf( "Page", $this->page2 );
 	$this->assertEquals( "page1", $this->page1->getId() );
     }
-
-
-    public function testGetArticle()
+    
+    public function testGetStringUndefined()
     {
-	$this->assertEquals( '${str1} <a href="google.com">google</a> ${str2}', $this->page1->getArticle() );
-	$this->assertEquals( '${mystr} mystr', $this->page2->getArticle() ); 
+	$this->setExpectedException( "StringNotFoundException", "abc" );
+	$this->page1->getString( "abc" );
+    }
+
+    public function testGetString()
+    {
+	$this->assertEquals( '<a href="sdfd.html">', $this->page1->getString( "str1" ) );
+	$this->assertEquals( '</a>', $this->page1->getString( "str2" ) );
+    }
+    
+    public function testGetAllStringNames()
+    {
+	$this->assertEquals( array( "PAGE-ID", "str1" ), $this->page2->getAllStringNames() );
+    }
+
+    public function testGetUndefinedStringInLanguage()
+    {
+	$this->setExpectedException( "StringNotFoundException", "abc" );
+	$this->page1->getStringInLanguage( "abc", "en" );
     }
 
 }

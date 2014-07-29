@@ -10,7 +10,8 @@ require_once( dirname(__FILE__)."/StubFactory.php" );
 require_once( dirname(__FILE__)."/../../../site/pico-wf/PageRenderer.php" );
 
 $factory = new StubFactory();
-$pageRenderer = new PageRenderer( $factory, $_GET["page"], $_GET["lang"] );
+$site = $factory->makeSite();
+$pageRenderer = $site->getPageRenderer( $_GET["page"], $_GET["lang"] );
 
 
 echo "<title>". $pageRenderer->getTitle()."</title>"; 

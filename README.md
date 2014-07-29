@@ -29,53 +29,81 @@ a site which is not complete.
 The *contents* directory contains. 
 
 * look&feel template (css)
-* the "pages", those are logical structures of text, *not* a html or php pages.     
-* multilingual strings for all pages
+* the *.page* files containing the page metadata     
+* Multiple *.text* files for all pages, each language has own *.text* file. 
+There can be also files containing individual articles. 
 
 Look at the *site* directory for example. Make your own contents by imitating
 the example. 
 
-A *page* file contains the template for a page, consisting of the 
-language-independent contents with references to multilingual strings. 
-Multilingual strings have to be defined in all supported languages. 
+#### Purpose and format of *.page* file
 
-There are few strings that must exist in every page: 
+*.page* file's name has to be in format: 
 
-* __TITLE__, will be shown in browser's title-bar, but also as hint for menu items
-* __SHORT_NAME__, will be used in visible menu items
+    <page-id>.page
 
+*page-id* is identifier of the page. Based on it, the framework will sort the
+items in the menu alphabetically. 
 
-### Page file format
-
-Page file contains plain text of the page, with references to the multilingual strings. 
-The plain text will be literaly shown to the user, while reference to the multilingual strings
-will be replaced with strings in appropriate language. For example, the page with 
-contents: 
+*.page* file contains the page's metadata and page's common, language-independent 
+macros. They are called 'macros' even though they are just strings, maybe one
+day in future there will be also a more powerful macro-like functionalities. 
 
 
-    ${str1} <a href="google.com">${str2}</a> 
+    PAGE_ID: page-id
 
-will be rendered as: 
+    str1: <a href="sdfd.html">
+    str2: </a>
+    long_str: many lines
+    with special characters < fdsf >> < $
+    ending with 
+    ===
+    next-long-str: 
+    first line
+    second line
+    ===
 
-    For search <a href="google.com">use Google</a>
+Every *.page* file must contain the *PAGE-ID* macro whose value must be
+the identifief or the page, the same as in file name. 
+
+#### Purpose and format of *.text* files
+
+The files containing the text in different languages would 
+have following filename format: 
+
+    <page-id>.<language>.text
+
+The text file contains in first three lines the metadata: 
+
+* *PAGE_ID* the identifier of the page, the same as in file name
+* *SHORT_NAME* short name of the page, which will appear in the menu
+* *TITLE* title of the page, it will be used as title in HTML page
+and also as tooltip for menu options. 
+
+Here is example of a *.text* file: 
     
-when strings are defined as: 
-
-    str1: "For search"
-    str2: "use Google"
-
-
-
-Page file names have the following format. 
-
-    <identifier>.pg
+    PAGE_ID: <page-id>
+    SHORT_NAME: Homepage
+    TITLE: Homepage, a very first page
+    CONTENTS:
+    Here comes very nice text in English, with some ${str1}links to the 
+    unknown${str2} that you have to click, in order to try. 
     
-*identifier* is going to be the identifier of the page. Items in the menu
-will be sorted by page *identifier*, and by chosing the right page identifiers the
-user can influence the order of menu options. 
+    
+There can be also multiple articles for one page, and they have to be in 
+separate files. 
+
+TODO!
+
+    <page-id>.<article-id>.<language>.article
+
+    Example: home.en.text
+
+    TITLE: Homepage
+    
+    here is the contentes of the home page ${str1}and press here for more${str2}
 
 
-### Mutlilingual strings file format
 
 
 
