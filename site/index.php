@@ -6,7 +6,7 @@
 
 <?php
 
-require_once( dirname(__FILE__)."/pico-wf/StubFactory.php" );
+require_once( dirname(__FILE__)."/pico-wf/FileFactory.php" );
 require_once( dirname(__FILE__)."/pico-wf/PageRenderer.php" );
 
 $factory = new StubFactory();

@@ -10,7 +10,8 @@ class PageRendererTest extends PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-	$this->pageRenderer = new PageRenderer( $GLOBALS["wfFactory"], "page1", "en" );
+	$site = $GLOBALS["wfFactory"]->makeSite();
+	$this->pageRenderer = $site->getPageRenderer( "page1", "en" );
     }
 
     
@@ -19,16 +20,22 @@ class PageRendererTest extends PHPUnit_Framework_TestCase
 	$this->assertInstanceOf( "PageRenderer", $this->pageRenderer );
     }
 
+
     public function testGetTitle()
     {
 	$this->assertEquals( "Page One", $this->pageRenderer->getTitle() );
     }
 
+
     public function testGetArticle()
     {
-	$expectedString = 'test string one <a href="google.com">google</a> the second string';
+	$expectedString = <<<EOS
+Here comes very nice text in English, with some <a href="sdfd.html">links to the 
+unknown</a> that you have to click, in order to try. 
+EOS;
 	$this->assertEquals( $expectedString, $this->pageRenderer->getArticle() );
     }
+
 
     public function testGetMenu()
     {
@@ -36,6 +43,7 @@ class PageRendererTest extends PHPUnit_Framework_TestCase
 			   '<nav class="menuitem"><a href="index.php?page=page2&lang=en">Second</a></nav>';
 	$this->assertEquals( $expectedString, $this->pageRenderer->getMenu() );
     }
+
 
     public function testGetLanguageSelector()
     {

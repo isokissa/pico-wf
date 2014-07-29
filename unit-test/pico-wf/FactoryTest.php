@@ -24,36 +24,6 @@ class FactoryTest extends PHPUnit_Framework_TestCase
 	$this->assertInstanceOf( "Site", $this->factory->makeSite() );
     }
 
-
-    public function testMakePage()
-    {
-	$this->assertInstanceOf( "Page", $this->factory->makePage( "page1" ) );
-	$this->assertInstanceOf( "Page", $this->factory->makePage( "page2" ) );
-    }
-
-
-    public function testMakePageNotFound()
-    {
-	$this->setExpectedException( "PageNotFoundException" );
-	$this->factory->makePage( "blabla" );
-    }
-
-
-    public function testMakeStringLoader()
-    {
-	$this->assertInstanceOf( "StringLoader", $this->factory->makeStringLoader( "page1", "en" ) );
-    }
-
-
-    public function testMakeStringLoaderLanguageNotFound()
-    {
-	$this->setExpectedException( "StringLoaderLanguageNotFoundException", "de" );
-	$this->factory->makeStringLoader( "page1", "de" );
-    }
-    
-
-
-
 }
 
 ?>
