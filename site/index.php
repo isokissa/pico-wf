@@ -6,11 +6,12 @@
 
 <?php
 
-require_once( dirname(__FILE__)."/pico-wf/FileFactory.php" );
+require_once( dirname(__FILE__)."/pico-wf/FileSystemBackend/FileFactory.php" );
 require_once( dirname(__FILE__)."/pico-wf/PageRenderer.php" );
 
-$factory = new StubFactory();
-$pageRenderer = new PageRenderer( $factory, $_GET["page"], $_GET["lang"] );
+$factory = new FileFactory();
+$site = $factory->makeSite();
+$pageRenderer = $site->getPageRenderer( $_GET["page"], $_GET["lang"] );
 
 
 echo "<title>". $pageRenderer->getTitle()."</title>"; 
