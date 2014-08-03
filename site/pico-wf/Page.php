@@ -14,19 +14,19 @@ abstract class Page
     abstract protected function getId();
 
     /**
-     * @return string for given name. Throws StringNotFoundException
+     * @return Macro for given name. Throws MacroNotFoundException
      * if not found
      **/
-    abstract public function getString( $name );
+    abstract public function getMacro( $name );
 
     /**
-     * @return list of all names available
+     * @return list of the names of all available macros
      **/
-    abstract public function getAllStringNames();
+    abstract public function getAllMacroNames();
     
     /**
-     * Throws StringNotFoundException if string not found, or 
-     * StringInLanguageNotFoundException if language is not found. 
+     * Throws StringInLanguageNotFoundException if string or 
+     * language is not found. 
      * @return string in given language
      **/
     abstract public function getStringInLanguage( $name, $languageId );
@@ -35,7 +35,7 @@ abstract class Page
 
 class PageNotFoundException extends Exception {}
 
-class StringNotFoundException extends Exception {}
+class MacroNotFoundException extends Exception {}
 
 class StringInLanguageNotFoundException extends Exception {}
 

@@ -2,7 +2,8 @@ PAGE-ID: page1
 
 str1: <a href="sdfd.html">
 str2: </a>
-long-str: many lines
+long-str: 
+many lines
 with special characters < fdsf >> < $
 ending with 
 ===

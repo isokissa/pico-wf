@@ -1,6 +1,6 @@
 PAGE_ID: <page-id>
-SHORT_TITLE: Homepage
-TITLE: Page one
+SHORT_TITLE: First
+TITLE: Page One
 
 CONTENTS:
 Here comes very nice text in English, with some ${str1}links to the 

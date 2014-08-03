@@ -1,0 +1,6 @@
+PAGE_ID:  page2
+SHORT_TITLE: Toinen Sivu
+TITLE: Sivu kaksi
+CONTENTS:
+Täällä tule teksti Suomen kielessä, ${str1} linkit ovat täällä 
+voit bla bla

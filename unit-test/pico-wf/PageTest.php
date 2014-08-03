@@ -11,40 +11,43 @@ class PageTest extends PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-	$site = $GLOBALS["wfFactory"]->makeSite();
-	$this->page1 = $site->getPage( "page1" );
-	$this->page2 = $site->getPage( "page2" );
+        $site = $GLOBALS["wfFactory"]->makeSite();
+        $this->page1 = $site->getPage( "page1" );
+        $this->page2 = $site->getPage( "page2" );
     }
 
     
     public function testConstruct()
     {
-	$this->assertInstanceOf( "Page", $this->page1 );
-	$this->assertInstanceOf( "Page", $this->page2 );
-	$this->assertEquals( "page1", $this->page1->getId() );
+        $this->assertInstanceOf( "Page", $this->page1 );
+        $this->assertInstanceOf( "Page", $this->page2 );
+        $this->assertEquals( "page1", $this->page1->getId() );
     }
     
-    public function testGetStringUndefined()
+    public function testGetMacroUndefined()
     {
-	$this->setExpectedException( "StringNotFoundException", "abc" );
-	$this->page1->getString( "abc" );
+        $this->setExpectedException( "MacroNotFoundException", "abc" );
+        $this->page1->getMacro( "abc" );
     }
 
-    public function testGetString()
+    public function testGetMacro()
     {
-	$this->assertEquals( '<a href="sdfd.html">', $this->page1->getString( "str1" ) );
-	$this->assertEquals( '</a>', $this->page1->getString( "str2" ) );
+        $this->assertEquals( '<a href="sdfd.html">', $this->page1->getMacro( "str1" ) );
+        $this->assertEquals( '</a>', $this->page1->getMacro( "str2" ) );
     }
     
-    public function testGetAllStringNames()
+    public function testGetAllMacroNames()
     {
-	$this->assertEquals( array( "PAGE-ID", "str1" ), $this->page2->getAllStringNames() );
+        $allStringNames = $this->page2->getAllMacroNames();
+        $this->assertCount( 2, $allStringNames );
+        $this->assertContains( "PAGE-ID", $allStringNames );
+        $this->assertContains( "str1", $allStringNames );
     }
 
     public function testGetUndefinedStringInLanguage()
     {
-	$this->setExpectedException( "StringNotFoundException", "abc" );
-	$this->page1->getStringInLanguage( "abc", "en" );
+        $this->setExpectedException( "StringInLanguageNotFoundException", "abc" );
+        $this->page1->getStringInLanguage( "abc", "en" );
     }
 
 }
