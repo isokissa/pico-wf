@@ -1,0 +1,6 @@
+PAGE_ID:page2
+SHORT_TITLE:Second
+TITLE:  Page two
+CONTENTS:
+Second page, with some ${str1} links to the 
+unknownthat you have to click, in order to try. 

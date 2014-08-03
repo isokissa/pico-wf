@@ -45,7 +45,7 @@ class FileStringLoader
             }
             else{
                 if( trim( $buffer ) === '===' ){
-                    $this->strings[ $multiLineName ] = rtrim( $multiLineValue );
+                    $this->strings[ $multiLineName ] = rtrim( $multiLineValue, "\r\n" );
                     $multiLineName = "";
                     $multiLineValue = "";
                 }
@@ -58,14 +58,19 @@ class FileStringLoader
             throw new FileStringLoaderFileReadException();
         }
         if( strlen( $multiLineName ) != 0 ){
-            $this->strings[ $multiLineName ] = rtrim( $multiLineValue );
+            $this->strings[ $multiLineName ] = rtrim( $multiLineValue, "\r\n" );
         }
         fclose( $handle );
     }
     
+    public function hasString( $stringName )
+    {
+        return array_key_exists( $stringName, $this->strings );
+    }
+    
     public function getString( $stringName )
     {
-        if( !array_key_exists( $stringName, $this->strings ) ){
+        if( !$this->hasString( $stringName ) ){
             throw new FileStringLoaderStringNotFoundException( $stringName );
         }
         return $this->strings[ $stringName ];

@@ -1,1 +1,7 @@
+PAGE_ID: page1
+SHORT_TITLE: Kotisivu
+TITLE:Sivu yksi
+CONTENTS:
+Täällä tule teksti Suomen kielessä, ${str1} linkit ovat täällä 
+voit yrittää${str2} jo niin. 
 

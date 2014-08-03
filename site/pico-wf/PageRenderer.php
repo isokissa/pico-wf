@@ -12,9 +12,9 @@ class PageRenderer
     {
         $this->site = $site;
         $this->page = $this->site->getPage( $pageId );
- 		if( !array_key_exists( $languageId, $this->site->getAllLanguages() ) ){
-			throw new SitePageLanguageNotFoundException( $languageId );
-		}
+        if( !array_key_exists( $languageId, $this->site->getAllLanguages() ) ){
+            throw new SitePageLanguageNotFoundException( $languageId );
+        }
         $this->languageId = $languageId;
     }
 
@@ -25,11 +25,12 @@ class PageRenderer
 
     public function getMenu()
     {
-        $pages = $this->site->getAllPages();
-        ksort( $pages );
+        $pageIds = $this->site->getAllPages();
+        ksort( $pageIds );
         $result = "";
-        foreach( $pages as $pageId => $page ){
-            $shortName =  $page->getStringInLanguage( 'SHORT_TITLE', $this->languageId );
+        foreach( $pageIds as $pageId ){
+            $page = $this->site->getPage( $pageId );
+            $shortName = $page->getStringInLanguage( 'SHORT_TITLE', $this->languageId );
             $result = $result.$this->getMenuItem( $pageId, $shortName );
         }
         return $result;
@@ -65,12 +66,12 @@ class PageRenderer
     public function getArticle()
     {
         $article = $this->page->getStringInLanguage( "CONTENTS", $this->languageId );
-    	foreach( $this->page->getAllStringNames() as $name ) {
-            $value = $this->page->getString( $name );
+        foreach( $this->page->getAllMacroNames() as $name ) {
+            $value = $this->page->getMacro( $name );
 
             // use preg_replace to match ${`$name`} or $`$name`
             $article = preg_replace(sprintf('/\$\{?%s\}?/', $name), $value, $article);
-    	}
+        }
         // return variable expanded string
         return $article;
     }

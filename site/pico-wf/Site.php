@@ -7,6 +7,10 @@
 */
 abstract class Site 
 {
+    /**
+     * Throws SiteInvalidException if the construction fails. 
+     */
+    abstract public function __construct();
 
     /**
      * Throws exception SitePageNotFoundException if page with given 
@@ -23,18 +27,19 @@ abstract class Site
     abstract public function getPageRenderer( $pageId, $languageId );
 
     /**
-     * @return all page ids and titles as map, for example: 
-     *        [ "page1" => "Title of page1", 
-     *          "page2" => "Title of page2" ];
+     * @return a list of all page ids, for example: 
+     *        [ "page1", "page2" ];
      */
     abstract public function getAllPages();
 
     /**
      * @return map [ id => Language ] of all supported languages
      **/
-	abstract public function getAllLanguages();
+    abstract public function getAllLanguages();
 
 }
+
+class SiteInvalidException extends Exception {}
 
 class SitePageNotFoundException extends Exception {}
 

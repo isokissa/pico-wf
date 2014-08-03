@@ -38,6 +38,11 @@ class FileStringLoaderTest extends PHPUnit_Framework_TestCase
         $a = $this->stringLoader->getString( "aaa" );
     }
     
+    public function testHasString()
+    {
+        $this->assertTrue( $this->stringLoader->hasString( "abc1" ) );
+        $this->assertFalse( $this->stringLoader->hasString( "aaabbb" ) );
+    }
     
     public function testGetAllStringNames()
     {

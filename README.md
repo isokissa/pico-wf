@@ -29,12 +29,26 @@ a site which is not complete.
 The *contents* directory contains. 
 
 * look&feel template (css)
+* the *site.config* file which describes the configuration of the site, 
+  what are the pages included and what are the supported languages. The 
+  site will be consistency-checked against the configuration specified in 
+  this file. 
 * the *.page* files containing the page metadata     
 * Multiple *.text* files for all pages, each language has own *.text* file. 
 There can be also files containing individual articles. 
 
 Look at the *site* directory for example. Make your own contents by imitating
 the example. 
+
+#### Purpose and format of *site.config* file
+
+*site.config* file lists all the pages of the site and all the supported languages. 
+The format of *site.config* file is as follows: 
+
+    pages: p1, p2, p3 ...
+    languages: en,English; fi,Suomi
+    
+There can be any number of spaces between separators and words. 
 
 #### Purpose and format of *.page* file
 
