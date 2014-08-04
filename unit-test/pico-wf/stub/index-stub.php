@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8"/>
-	<link href="contents/stylesheet.css" rel="stylesheet"/>
+    <meta charset="utf-8"/>
+    <link href="contents/stylesheet.css" rel="stylesheet"/>
 
 <?php
 
@@ -11,7 +11,19 @@ require_once( dirname(__FILE__)."/../../../site/pico-wf/PageRenderer.php" );
 
 $factory = new StubFactory();
 $site = $factory->makeSite();
-$pageRenderer = $site->getPageRenderer( $_GET["page"], $_GET["lang"] );
+if( array_key_exists( "page", $_GET ) ){
+    $page = $_GET["page"];
+}
+else{
+    $page = $site->getAllPages()[0];
+}
+if( array_key_exists( "lang", $_GET ) ){
+    $lang = $_GET["lang"];
+}
+else{
+    $lang = array_keys( $site->getAllLanguages() )[0];
+}
+$pageRenderer = $site->getPageRenderer( $page, $lang );
 
 
 echo "<title>". $pageRenderer->getTitle()."</title>"; 
