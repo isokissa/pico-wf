@@ -1,17 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8"/>
-	<link href="contents/stylesheet.css" rel="stylesheet"/>
+    <meta charset="utf-8"/>
+    <link href="contents/stylesheet.css" rel="stylesheet"/>
 
 <?php
 
-require_once( dirname(__FILE__)."/pico-wf/FileSystemBackend/FileFactory.php" );
-require_once( dirname(__FILE__)."/pico-wf/PageRenderer.php" );
+require_once( __DIR__."/pico-wf/FileSystemBackend/FileFactory.php" );
+require_once( __DIR__."/pico-wf/PageRenderer.php" );
 
 $factory = new FileFactory();
 $site = $factory->makeSite();
-$pageRenderer = $site->getPageRenderer( $_GET["page"], $_GET["lang"] );
+if( array_key_exists( "page", $_GET ) ){
+    $page = $_GET["page"];
+}
+else{
+    $page = $site->getAllPages()[0];
+}
+if( array_key_exists( "lang", $_GET ) ){
+    $lang = $_GET["lang"];
+}
+else{
+    $lang = array_keys( $site->getAllLanguages() )[0];
+}
+$pageRenderer = $site->getPageRenderer( $page, $lang );
 
 
 echo "<title>". $pageRenderer->getTitle()."</title>"; 
@@ -23,13 +35,17 @@ echo "<title>". $pageRenderer->getTitle()."</title>";
 </head>
 <body>
 
-<nav>
+<nav class="main_menu">
 <?php echo $pageRenderer->getMenu(); ?>
 </nav>
 
 <article>
 <?php echo $pageRenderer->getArticle(); ?>
 </article>
+
+<nav class="lang_selector">
+<?php echo $pageRenderer->getLanguageSelector(); ?>
+</nav>
 
 
 </body>
