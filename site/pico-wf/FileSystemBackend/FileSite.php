@@ -48,8 +48,16 @@ class FileSite extends Site
         }
     }
 
-    public function getPageRenderer( $pageId, $language ){
-        return new PageRenderer( $this, $pageId, $language );
+    public function getPageRenderer( $pageId, $languageId ){
+        $realPageId = $pageId;
+        if( !in_array( $pageId, $this->pageIds ) ){
+            $realPageId = $this->pageIds[0];
+        }
+        $realLanguageId = $languageId;
+        if( !array_key_exists( $languageId, $this->languages ) ){
+            $realLanguageId = array_keys( $this->languages )[0];
+        }
+        return new PageRenderer( $this, $realPageId, $realLanguageId );
     }
 
     public function getAllPages()

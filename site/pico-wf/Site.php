@@ -20,9 +20,10 @@ abstract class Site
     abstract public function getPage( $pageId );
 
     /**
-     * Throws exception SitePageLanguageNotFoundException if language is not
-     * found. It will throw SitePageNotFoundException if pageId is not found. 
-     * @return get the PageRenderer object for given pageId and languageId
+     * @return PageRenderer object for given pageId and languageId.
+     *      If page pageId does not exist, the method will use first page of 
+     *      the site. If language languageId does not exist, the method
+     *      will use first language of the site. 
      **/
     abstract public function getPageRenderer( $pageId, $languageId );
 

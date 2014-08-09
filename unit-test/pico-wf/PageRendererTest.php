@@ -5,13 +5,13 @@ require_once( "site/pico-wf/PageRenderer.php" );
 
 class PageRendererTest extends PHPUnit_Framework_TestCase
 {
-
     protected $pageRenderer;
+    protected $site;
 
     protected function setUp()
     {
-        $site = $GLOBALS["wfFactory"]->makeSite();
-        $this->pageRenderer = $site->getPageRenderer( "page1", "en" );
+        $this->site = $GLOBALS["wfFactory"]->makeSite();
+        $this->pageRenderer = $this->site->getPageRenderer( "page1", "en" );
     }
 
     
@@ -19,13 +19,23 @@ class PageRendererTest extends PHPUnit_Framework_TestCase
     {
         $this->assertInstanceOf( "PageRenderer", $this->pageRenderer );
     }
-
+    
+    public function testConstructWithInvalidPageIdThrows()
+    {
+        $this->setExpectedException( "SitePageNotFoundException", "abc" );
+        $renderer = new PageRenderer( $this->site, "abc", "fi" );
+    }
+    
+    public function testConstructWithInvalidLanguageThrows()
+    {
+        $this->setExpectedException( "SitePageLanguageNotFoundException", "yu" );
+        $renderer = new PageRenderer( $this->site, "page1", "yu" );
+    }
 
     public function testGetTitle()
     {
         $this->assertEquals( "Page One", $this->pageRenderer->getTitle() );
     }
-
 
     public function testGetArticle()
     {

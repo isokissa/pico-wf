@@ -31,14 +31,14 @@ class IndexTest extends PHPUnit_Framework_TestCase
         include( $GLOBALS["wfTestPage"] );      
     }
     
-    public function testDefaultPage(){
+    public function testNoPageGivenShowsFirstPage(){
         $this->expectOutputRegex( "/<title>Sivu yksi<\/title>/" );
         $_GET = array();
         $_GET["lang"] = "fi";   
         include( $GLOBALS["wfTestPage"] );
     }
     
-    public function testDefaultLanguage()
+    public function testNoLanguageGivenShowsFirstLanguage()
     {
         $this->expectOutputRegex( "/<title>Page two<\/title>/" );
         $_GET = array();
@@ -46,12 +46,22 @@ class IndexTest extends PHPUnit_Framework_TestCase
         include( $GLOBALS["wfTestPage"] );      
     }
 
-    public function testDefaultPageAndLanguage()
+    public function testNoPageAndLanguageGivenShowFirstPageAndFirstLanguage()
     {
         $this->expectOutputRegex( "/<title>Page One<\/title>/" );
         $_GET = array();
         include( $GLOBALS["wfTestPage"] );
     }
+    
+    public function testWrongPageShowsFirstPage()
+    {
+        $this->expectOutputRegex( "/<title>Page One<\/title>/" );
+        $_GET = array();
+        $_GET["page"] = "non-existing-page";
+        $_GET["lang"] = "en";
+        include( $GLOBALS["wfTestPage"] );      
+    }
+    
     
 }
 
