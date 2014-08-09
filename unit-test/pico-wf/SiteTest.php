@@ -33,16 +33,16 @@ class SiteTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf( "Page", $page );
     }
 
-    public function testGetPageRendererNonExistingPage()
+    public function testGetPageRendererNonExistingPageGivesFirstPage()
     {
-        $this->setExpectedException( "SitePageNotFoundException", "pageX" );
         $pageRenderer = $this->site->getPageRenderer( "pageX", "en" );
+        $this->assertEquals( "Page One", $pageRenderer->getTitle() );
     }
 
-    public function testGetPageRendererNonSupportedLanguage()
+    public function testGetPageRendererNonSupportedLanguageGivesFirstLanguage()
     {
-        $this->setExpectedException( "SitePageLanguageNotFoundException", "de" );
-        $pageRenderer = $this->site->getPageRenderer( "page1", "de" );
+        $pageRenderer = $this->site->getPageRenderer( "page1", "yu" );
+        $this->assertEquals( "Page One", $pageRenderer->getTitle() );
     }
 
     public function testGetAllPages()

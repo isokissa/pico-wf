@@ -8,6 +8,11 @@ class PageRenderer
     private $page; 
     private $languageId;
 
+
+    /**
+     * Throws exception SitePageLanguageNotFoundException if language is not
+     * found. It will throw SitePageNotFoundException if pageId is not found. 
+     */
     public function __construct( $site, $pageId, $languageId )
     {
         $this->site = $site;

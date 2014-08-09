@@ -26,8 +26,16 @@ class StubSite extends Site
         return $this->pages[ $pageId ];
     }
 
-    public function getPageRenderer( $pageId, $language ){
-        return new PageRenderer( $this, $pageId, $language );
+    public function getPageRenderer( $pageId, $languageId ){
+        $realPageId = $pageId;
+        if( !array_key_exists( $pageId, $this->pages ) ){
+            $realPageId = array_keys( $this->pages )[0];
+        }
+        $realLanguageId = $languageId;
+        if( !array_key_exists( $languageId, $this->languages ) ){
+            $realLanguageId = array_keys( $this->languages )[0];
+        }
+        return new PageRenderer( $this, $realPageId, $realLanguageId );
     }
 
     public function getAllPages()
