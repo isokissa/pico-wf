@@ -22,6 +22,15 @@ class IndexTest extends PHPUnit_Framework_TestCase
         include( $GLOBALS["wfTestPage"] );
     }
     
+    public function testTitleShownInPage()
+    {
+        $this->expectOutputRegex( "/<h2>Sivu yksi<\/h2>/" );
+        $_GET = array();
+        $_GET["page"] = "page1";
+        $_GET["lang"] = "fi";   
+        include( $GLOBALS["wfTestPage"] );      
+    }
+    
     public function testSecondPage()
     {
         $this->expectOutputRegex( "/<title>Page two<\/title>/" );
@@ -61,7 +70,6 @@ class IndexTest extends PHPUnit_Framework_TestCase
         $_GET["lang"] = "en";
         include( $GLOBALS["wfTestPage"] );      
     }
-    
     
 }
 

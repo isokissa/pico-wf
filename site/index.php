@@ -43,7 +43,10 @@ echo "<title>". $pageRenderer->getTitle()."</title>";
 </nav>
 
 <article>
-<?php echo $pageRenderer->getArticle(); ?>
+<?php 
+    echo "<h2>". $pageRenderer->getTitle()."</h2>"; 
+    echo $pageRenderer->getArticle(); 
+?>
 </article>
 
 <nav class="lang_selector">

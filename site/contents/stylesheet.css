@@ -35,6 +35,10 @@ article {
     width: 595px;
 }
 
+h2 {
+    margin-top: 0;
+}
+
 nav {
     text-align: center;
 }
