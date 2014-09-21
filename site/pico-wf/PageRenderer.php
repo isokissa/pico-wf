@@ -43,7 +43,7 @@ class PageRenderer
     
     private function getMenuItem( $pageId, $pageShortName )
     {
-        return '<nav class="menuitem"><a href="index.php?'.
+        return '<nav class="menu_item"><a href="index.php?'.
                'page='.$pageId.
                '&lang='.$this->languageId.
                '">'.$pageShortName.'</a></nav>';

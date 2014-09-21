@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="contents/stylesheet.css" rel="stylesheet"/>
 
 <?php
@@ -35,6 +36,8 @@ echo "<title>". $pageRenderer->getTitle()."</title>";
 </head>
 <body>
 
+<div class="page">
+
 <nav class="main_menu">
 <?php echo $pageRenderer->getMenu(); ?>
 </nav>
@@ -47,6 +50,7 @@ echo "<title>". $pageRenderer->getTitle()."</title>";
 <?php echo $pageRenderer->getLanguageSelector(); ?>
 </nav>
 
+</div>
 
 </body>
 </html>

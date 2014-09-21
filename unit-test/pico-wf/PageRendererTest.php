@@ -49,8 +49,8 @@ EOS;
 
     public function testGetMenu()
     {
-        $expectedString =  '<nav class="menuitem"><a href="index.php?page=page1&lang=en">First</a></nav>'.
-                           '<nav class="menuitem"><a href="index.php?page=page2&lang=en">Second</a></nav>';
+        $expectedString =  '<nav class="menu_item"><a href="index.php?page=page1&lang=en">First</a></nav>'.
+                           '<nav class="menu_item"><a href="index.php?page=page2&lang=en">Second</a></nav>';
         $this->assertEquals( $expectedString, $this->pageRenderer->getMenu() );
     }
 

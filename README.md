@@ -2,10 +2,10 @@ pico-wf
 =======
 
 __pico-wf__ is a minimalistic multilingual web framework. Using pico-wf one can create 
-simple web sites with multilingual pages. Each of pages contains the main 
+simple web sites with multilingual pages. Each of pages contains main 
 menu with links to other pages. A page can contain articles, which may be written in 
-multiple languages. Once multiple languages are introduced, the framework will require 
-that all articles are written in all supported languages. 
+multiple languages. Once multiple languages are introduced, the framework will 
+try to assure that all articles are written in all supported languages [TODO]. 
 
 Usage
 -----
@@ -87,12 +87,15 @@ have following filename format:
 
     <page-id>.<language>.text
 
-The text file contains in first three lines the metadata: 
+The text file must contain the metadata in the following strings with fixed names: 
 
 * *PAGE_ID* the identifier of the page, the same as in file name
 * *SHORT_NAME* short name of the page, which will appear in the menu
 * *TITLE* title of the page, it will be used as title in HTML page
 and also as tooltip for menu options. 
+
+The contents of the page in particular language is stored in the string with 
+name *CONTENTS*.
 
 Here is example of a *.text* file: 
     
@@ -103,11 +106,10 @@ Here is example of a *.text* file:
     Here comes very nice text in English, with some ${str1}links to the 
     unknown${str2} that you have to click, in order to try. 
     
-    
+#### Articles [TODO]
+
 There can be also multiple articles for one page, and they have to be in 
 separate files. 
-
-TODO!
 
     <page-id>.<article-id>.<language>.article
 
@@ -119,8 +121,6 @@ TODO!
 
 
 
-
-
 Development Environment
 -----------------------
 
@@ -128,10 +128,10 @@ I have used XAMPP bundle to get PHP5.5, Apache httpd and MySQL.
 Type "/opt/lampp/lampp start" to start, and browse to URL http://localhost
 
 *lampp* is very convenient, it will install everything in /opt/lampp, and will
-not polute any other directory with files. Because of that, find php
+not polute any other directory with files. Therefore, find php
 cli directly from lampp directory: "/opt/lampp/bin/php"
 
-For convenience, include the /opt/lampp/bin/ into PATH (the same is also 
+For convenience, include /opt/lampp/bin/ into PATH (the same is also 
 done in setup.sh): 
 
     PATH=$PATH:/opt/lampp/bin/
