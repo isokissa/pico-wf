@@ -29,16 +29,48 @@ a site which is not complete.
 The *contents* directory contains. 
 
 * look&feel template (css)
-* the *site.config* file which describes the configuration of the site, 
+* the *site.config* is a string-map file which describes the configuration of the site, 
   what are the pages included and what are the supported languages. The 
   site will be consistency-checked against the configuration specified in 
   this file. 
-* the *.page* files containing the page metadata     
-* Multiple *.text* files for all pages, each language has own *.text* file. 
-There can be also files containing individual articles. 
+* the *.page* files are string-maps containing the page metadata     
+* Multiple *.text* files for all pages, each language has own *.text* file, in 
+  format of string-map
+
+[TODO] There can be also files containing individual articles. 
 
 Look at the *site* directory for example. Make your own contents by imitating
 the example. 
+
+#### Format of string-map files
+
+A string-map file contains set of _name:value_ pairs. There can be _single-line_
+and _multiple-line_ name-value pairs, depending on whether _value_ 
+fits into single line or into multiple lines. 
+
+The example _single-line_ _name:value_ pair: 
+
+    my-string-name:my string contents
+    
+Everything from the start of the line till the first ":" is considered to 
+be the name of the string, except leading and trailing spaces. The rest of 
+the line, after ":" is considered to be the value. 
+
+The example _multiple-line_ _name:value_ pair, with embedded explanations: 
+
+    my-string-name:
+    Here comes the contents in multiple lines
+    Terminated by a special end-of-string line or 
+    the end of file.
+    Special end-of-string line is the one which contains only 
+    "===EOS===" string. 
+    ===EOS===
+    my-next-string-name:
+    This multiline string ends at end of file. 
+    note that the line after name of the string and ":"
+    has to be empty. This is the indication to parser
+    that the string is multiline. 
+    
 
 #### Purpose and format of *site.config* file
 

@@ -40,7 +40,10 @@ echo "<title>". $pageRenderer->getTitle()."</title>";
 </nav>
 
 <article>
-<?php echo $pageRenderer->getArticle(); ?>
+<?php 
+    echo "<h1>". $pageRenderer->getTitle()."</h1>"; 
+    echo $pageRenderer->getArticle(); 
+?>
 </article>
 
 
