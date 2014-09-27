@@ -28,6 +28,16 @@ class PageRenderer
         return htmlspecialchars( $this->page->getStringInLanguage( "TITLE", $this->languageId ) );
     }
 
+    public function getGlobalHeader()
+    {
+        return $this->site->getGlobalHeader();
+    }
+    
+    public function getGlobalFooter()
+    {
+        return $this->site->getGlobalFooter(); 
+    }
+
     public function getMenu()
     {
         $pageIds = $this->site->getAllPages();

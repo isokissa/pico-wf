@@ -10,6 +10,8 @@ class FileSite extends Site
 {
     private $pageIds;
     private $languages;
+    private $globalHeader = ""; 
+    private $globalFooter = "";
 
     public function __construct()
     {
@@ -21,6 +23,12 @@ class FileSite extends Site
         $stringLoader = new FileStringLoader( __DIR__."/../../contents/site.config" );
         $this->extractPageIds( $stringLoader->getString( "pages" ) );
         $this->extractLanguages( $stringLoader->getString( "languages" ) );
+        if( $stringLoader->hasString( "global-header" ) ){
+            $this->globalHeader = $stringLoader->getString( "global-header" );
+        }
+        if( $stringLoader->hasString( "global-footer" ) ){
+            $this->globalFooter = $stringLoader->getString( "global-footer" );      
+        }
     }
     
     private function extractPageIds( $pageIdsString )
@@ -68,6 +76,16 @@ class FileSite extends Site
     public function getAllLanguages()
     {
         return $this->languages;
+    }
+    
+    public function getGlobalHeader()
+    {
+        return $this->globalHeader;
+    }
+    
+    public function getGlobalFooter()
+    {
+        return $this->globalFooter;
     }
         
 }

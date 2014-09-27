@@ -36,7 +36,12 @@ echo "<title>". $pageRenderer->getTitle()."</title>";
 </head>
 <body>
 
+
 <div class="page">
+
+<?php echo $pageRenderer->getGlobalHeader(); ?>
+    
+<div>
 
 <nav class="main_menu">
 <?php echo $pageRenderer->getMenu(); ?>
@@ -54,6 +59,10 @@ echo "<title>". $pageRenderer->getTitle()."</title>";
 </nav>
 
 </div>
+
+<?php echo $pageRenderer->getGlobalFooter(); ?>
+</div>
+
 
 </body>
 </html>

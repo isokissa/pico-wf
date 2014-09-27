@@ -61,6 +61,19 @@ EOS;
                           '<nav class="language"><a href="index.php?page=page1&lang=fi">Suomi</a></nav>';
         $this->assertEquals( $expectedString, $this->pageRenderer->getLanguageSelector() );
     }
+    
+    public function testGetGlobalHeader()
+    {
+        $expectedString = '<img src="header.jpg">';
+        $this->assertEquals( $expectedString, $this->pageRenderer->getGlobalHeader() );
+    }
+    
+    public function testGetGlobalFooter()
+    {
+        $expectedString = '<img src="footer.jpg">';
+        $this->assertEquals( $expectedString, $this->pageRenderer->getGlobalFooter() );
+    }
+        
 }
 
 ?>
