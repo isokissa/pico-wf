@@ -74,13 +74,44 @@ The example _multiple-line_ _name:value_ pair, with embedded explanations:
 
 #### Purpose and format of *site.config* file
 
-*site.config* file lists all the pages of the site and all the supported languages. 
-The format of *site.config* file is as follows: 
+*site.config* file contains a string-map describing global, site-wide 
+parameters: 
+
+* **pages**, contains the comma separated list of pages in the site. 
+  The order in which pages appear in the list is important, becasue this 
+  will be the order in which pages will appear in menus. First page in the
+  list will be also default or home page. 
+* **languages**, contais the semicolumn-separated list of supported languages. 
+  pico-wf will expect that all pages given in the list are available in all 
+  supported languages. The order in which languages appear in this list is 
+  important because this will be the order in which lanugages will appear in 
+  language selecting menu. First language in the list is also the default 
+  language. 
+  
+  Each language within the list of languages is specified by short id and 
+  single word full language name, separated by comma. Short id is used in URL's, 
+  while full language name appears in language selector menus. 
+* **global-header** contains the HTML text that will be included as first
+  string for all pages in the site. 
+* **global-footer** contains the HTML text that will be included as last
+  string for all pages in the site. 
+
+Example of *site.config* file: 
 
     pages: p1, p2, p3 ...
     languages: en,English; fi,Suomi
+    global-header: 
+    <h3>here comes any kind of HTML text you want as header of the page</h3>
+    ===EOS===
+    global-footer: 
+    <p>(c) 2014 isokissa.org all rights reserved</p>
+    ===EOS===
     
-There can be any number of spaces between separators and words. 
+In **pages** and **languages** parameters, there can be any number of 
+spaces between separators and words. 
+
+Note that **global-header** and **global-footer** are the same for all 
+languages.
 
 #### Purpose and format of *.page* file
 
@@ -103,11 +134,11 @@ day in future there will be also a more powerful macro-like functionalities.
     long_str: many lines
     with special characters < fdsf >> < $
     ending with 
-    ===
+    ===EOS===
     next-long-str: 
     first line
     second line
-    ===
+    ===EOS===
 
 Every *.page* file must contain the *PAGE-ID* macro whose value must be
 the identifief or the page, the same as in file name. 
@@ -121,9 +152,9 @@ have following filename format:
 
 The text file must contain the metadata in the following strings with fixed names: 
 
-* *PAGE_ID* the identifier of the page, the same as in file name
-* *SHORT_NAME* short name of the page, which will appear in the menu
-* *TITLE* title of the page, it will be used as title in HTML page
+* **PAGE_ID** the identifier of the page, the same as in file name
+* **SHORT_NAME** short name of the page, which will appear in the menu
+* **TITLE** title of the page, it will be used as title in HTML page
 and also as tooltip for menu options. 
 
 The contents of the page in particular language is stored in the string with 

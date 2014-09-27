@@ -62,7 +62,16 @@ class SiteTest extends PHPUnit_Framework_TestCase
         $this->assertEquals( "Suomi", $languages[ "fi" ]->name );
         $this->assertEquals( "English", $languages[ "en" ]->name );
     }
+    
+    public function testGetGlobalFooter()
+    {
+        $this->assertEquals( '<img src="footer.jpg">', $this->site->getGlobalFooter() );
+    }
 
+    public function testGetGlobalHeader()
+    {
+        $this->assertEquals( '<img src="header.jpg">', $this->site->getGlobalHeader() );
+    }
 
 }
 

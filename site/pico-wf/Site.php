@@ -37,6 +37,16 @@ abstract class Site
      * @return map [ id => Language ] of all supported languages
      **/
     abstract public function getAllLanguages();
+    
+    /**
+     * @return global header
+     */
+    abstract public function getGlobalHeader();
+    
+    /**
+     * @return glogal footer
+     */
+    abstract public function getGlobalFooter();
 
 }
 
