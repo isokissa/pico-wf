@@ -39,28 +39,32 @@ echo "<title>". $pageRenderer->getTitle()."</title>";
 
 <div class="page">
 
-<?php echo $pageRenderer->getGlobalHeader(); ?>
+<div class="global_header">
+    <?php echo $pageRenderer->getGlobalHeader(); ?>
+</div>
     
-<div>
+<div class="middle">
+    <nav class="main_menu">
+        <?php echo $pageRenderer->getMenu(); ?>
+    </nav>
 
-<nav class="main_menu">
-<?php echo $pageRenderer->getMenu(); ?>
-</nav>
-
-<article>
-<?php 
-    echo "<h1>". $pageRenderer->getTitle()."</h1>"; 
-    echo $pageRenderer->getArticle(); 
-?>
-</article>
-
-<nav class="lang_selector">
-<?php echo $pageRenderer->getLanguageSelector(); ?>
-</nav>
-
+    <article>
+    <?php 
+        echo "<h1>". $pageRenderer->getTitle()."</h1>"; 
+        echo $pageRenderer->getArticle(); 
+    ?>
+    </article>
 </div>
 
-<?php echo $pageRenderer->getGlobalFooter(); ?>
+
+<nav class="lang_selector">
+    <?php echo $pageRenderer->getLanguageSelector(); ?>
+</nav>
+
+<div class="global_footer">
+    <?php echo $pageRenderer->getGlobalFooter(); ?>
+</div>
+
 </div>
 
 
