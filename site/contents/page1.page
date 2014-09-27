@@ -6,8 +6,8 @@ long-str:
 many lines
 with special characters < fdsf >> < $
 ending with 
-===
+===EOS===
 next-long-str: 
 first line
 second line
-===
+===EOS===

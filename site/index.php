@@ -44,7 +44,7 @@ echo "<title>". $pageRenderer->getTitle()."</title>";
 
 <article>
 <?php 
-    echo "<h2>". $pageRenderer->getTitle()."</h2>"; 
+    echo "<h1>". $pageRenderer->getTitle()."</h1>"; 
     echo $pageRenderer->getArticle(); 
 ?>
 </article>

@@ -44,7 +44,7 @@ class FileStringLoader
                 }
             }
             else{
-                if( trim( $buffer ) === '===' ){
+                if( trim( $buffer ) === '===EOS===' ){
                     $this->strings[ $multiLineName ] = rtrim( $multiLineValue, "\r\n" );
                     $multiLineName = "";
                     $multiLineValue = "";

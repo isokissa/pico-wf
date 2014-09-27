@@ -24,7 +24,7 @@ class IndexTest extends PHPUnit_Framework_TestCase
     
     public function testTitleShownInPage()
     {
-        $this->expectOutputRegex( "/<h2>Sivu yksi<\/h2>/" );
+        $this->expectOutputRegex( "/<h1>Sivu yksi<\/h1>/" );
         $_GET = array();
         $_GET["page"] = "page1";
         $_GET["lang"] = "fi";   
