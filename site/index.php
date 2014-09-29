@@ -39,9 +39,9 @@ echo "<title>". $pageRenderer->getTitle()."</title>";
 
 <div class="page">
 
-<div class="global_header">
+<header class="global">
     <?php echo $pageRenderer->getGlobalHeader(); ?>
-</div>
+</header>
     
 <div class="middle">
     <nav class="main_menu">
@@ -61,9 +61,9 @@ echo "<title>". $pageRenderer->getTitle()."</title>";
     <?php echo $pageRenderer->getLanguageSelector(); ?>
 </nav>
 
-<div class="global_footer">
+<footer class="global">
     <?php echo $pageRenderer->getGlobalFooter(); ?>
-</div>
+</footer>
 
 </div>
 
