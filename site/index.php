@@ -10,7 +10,7 @@
 require_once( __DIR__."/pico-wf/FileSystemBackend/FileFactory.php" );
 require_once( __DIR__."/pico-wf/PageRenderer.php" );
 
-$factory = new FileFactory();
+$factory = new FileFactory( __DIR__."/contents");
 $site = $factory->makeSite();
 if( array_key_exists( "page", $_GET ) ){
     $page = $_GET["page"];

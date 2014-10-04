@@ -3,16 +3,13 @@
 
 abstract class Page
 {
+    protected $pageId;
 
     public function __construct( $pageId )
     {
-        $this->init( $pageId );
+        $this->pageId = $pageId;
     }
-
-    abstract protected function init( $pageId );
     
-    abstract protected function getId();
-
     /**
      * @return Macro for given name. Throws MacroNotFoundException
      * if not found

@@ -8,19 +8,21 @@ require_once( "FileStringLoader.php" );
 
 class FileSite extends Site
 {
+    private $pathToContents;
     private $pageIds;
     private $languages;
     private $globalHeader = ""; 
     private $globalFooter = "";
 
-    public function __construct()
+    public function __construct( $pathToContents )
     {
+        $this->pathToContents = $pathToContents;
         $this->loadSiteConfiguration();
     }
     
     private function loadSiteConfiguration()
     {
-        $stringLoader = new FileStringLoader( __DIR__."/../../contents/site.config" );
+        $stringLoader = new FileStringLoader( $this->pathToContents."/site.config" );
         $this->extractPageIds( $stringLoader->getString( "pages" ) );
         $this->extractLanguages( $stringLoader->getString( "languages" ) );
         if( $stringLoader->hasString( "global-header" ) ){
@@ -49,7 +51,7 @@ class FileSite extends Site
     
     public function getPage( $pageId ){
         try{
-            return new FilePage( $pageId );
+            return new FilePage( $pageId, $this->pathToContents );
         }
         catch( Exception $e ){
             throw new SitePageNotFoundException( $pageId, 0, $e );
