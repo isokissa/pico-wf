@@ -8,11 +8,6 @@
 abstract class Site 
 {
     /**
-     * Throws SiteInvalidException if the construction fails. 
-     */
-    abstract public function __construct();
-
-    /**
      * Throws exception SitePageNotFoundException if page with given 
      * pageId is not found.
      * @return Page object for given pageId
@@ -47,10 +42,7 @@ abstract class Site
      * @return glogal footer
      */
     abstract public function getGlobalFooter();
-
 }
-
-class SiteInvalidException extends Exception {}
 
 class SitePageNotFoundException extends Exception {}
 

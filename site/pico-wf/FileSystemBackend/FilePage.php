@@ -7,13 +7,16 @@ require_once( "FileStringLoader.php" );
 class FilePage extends Page
 {
 
+    private $pathToContents;
     private $macrosStringLoader;
     private $stringsInLanguages;
 
 
-    protected function init( $pageId )
+    public function __construct( $pageId, $pathToContents )
     {
-        $this->macrosStringLoader = new FileStringLoader( __DIR__."/../../contents/".$pageId.".page" );
+        parent::__construct( $pageId );
+        $this->pathToContents = $pathToContents;
+        $this->macrosStringLoader = new FileStringLoader( $this->pathToContents."/".$this->pageId.".page" );
         $this->stringsInLanguages = array();
     }
 
@@ -41,7 +44,7 @@ class FilePage extends Page
             if( !array_key_exists( $languageId, $this->stringsInLanguages ) ){
                 try{
                     $languageStringLoader = 
-                        new FileStringLoader( __DIR__."/../../contents/".$this->getId().".".$languageId.".text" );
+                        new FileStringLoader( $this->pathToContents."/".$this->getId().".".$languageId.".text" );
                     $this->stringsInLanguages[ $languageId ] = $languageStringLoader; 
                 }
                 catch( Exception $e ){

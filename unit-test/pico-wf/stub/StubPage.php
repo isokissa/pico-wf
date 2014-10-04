@@ -9,8 +9,9 @@ class StubPage extends Page
     private $s;
     private $sInLanguage;
 
-    protected function init( $pageId )
+    public function __construct( $pageId )
     {
+        parent::__contruct( $pageId );
         if( $pageId == "page1" ){
             $this->s = array(
                 "PAGE-ID" => "page1",
@@ -75,11 +76,6 @@ EOS
         else{
             throw new PageNotFoundException();
         }
-    }
-
-    public function getId()
-    {
-        return $this->s[ "PAGE-ID" ];
     }
         
     public function getMacro( $name )
