@@ -39,6 +39,10 @@ echo "<title>". $pageRenderer->getTitle()."</title>";
 
 <div class="page">
 
+<nav class="lang_selector">
+    <?php echo $pageRenderer->getLanguageSelector(); ?>
+</nav>
+
 <header class="global">
     <?php echo $pageRenderer->getGlobalHeader(); ?>
 </header>
@@ -55,11 +59,6 @@ echo "<title>". $pageRenderer->getTitle()."</title>";
     ?>
     </article>
 </div>
-
-
-<nav class="lang_selector">
-    <?php echo $pageRenderer->getLanguageSelector(); ?>
-</nav>
 
 <footer class="global">
     <?php echo $pageRenderer->getGlobalFooter(); ?>
