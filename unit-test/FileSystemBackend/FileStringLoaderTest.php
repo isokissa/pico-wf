@@ -11,30 +11,30 @@ class FileStringLoaderTest extends PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->stringLoader = new FileStringLoader( "unit-test/FileSystemBackend/test.text" );
+        $this->stringLoader = new FileStringLoader( "unit-test/FileSystemBackend" );
+        $this->stringLoader->setContext( "test.text" );
     }
 
-    public function testConstruct()
-    {
-        $this->assertInstanceOf( "FileStringLoader", $this->stringLoader );
-    }
 
-    public function testConstructInvalidFileName()
+    public function testContextInvalidFileName()
     {
-        $invalidFileName = "unit-test/FileSystemBackend/abc.def";
-        $this->setExpectedException( "FileStringLoaderFileNotFoundException", $invalidFileName );
-        $a = new FileStringLoader( $invalidFileName );
+        $base = "unit-test/FileSystemBackend";
+        $context = "abc.def"; 
+        $this->setExpectedException( "StringLoaderInvalidContextException", $base."/".$context );
+        $a = new FileStringLoader( $base );
+        $a->setContext( $context );
     }
     
     public function testReadInvalidFile()
     {
         $this->setExpectedException( "FileStringLoaderFileReadException", "" );
-        $a = new FileStringLoader( "unit-test/FileSystemBackend/invalid.txt" );
+        $a = new FileStringLoader( "unit-test/FileSystemBackend" );
+        $a->setContext( "invalid.txt" );
     }
     
     public function testGetInvalidString()
     {
-        $this->setExpectedException( "FileStringLoaderStringNotFoundException", "aaa" );
+        $this->setExpectedException( "StringLoaderStringNotFoundException", "aaa" );
         $a = $this->stringLoader->getString( "aaa" );
     }
     

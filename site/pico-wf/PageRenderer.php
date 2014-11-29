@@ -1,7 +1,5 @@
 <?php
 
-require_once( "Factory.php" );
-
 class PageRenderer 
 {
     private $site;

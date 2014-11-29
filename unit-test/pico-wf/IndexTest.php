@@ -1,8 +1,16 @@
 <?php
 
+require_once( "stub/StubSite.php" );
+
 
 class IndexTest extends PHPUnit_Framework_TestCase
 {
+
+    public function setUp()
+    {
+        $this->indexPage = "site/index.php";
+    }
+
 
     public function testTitleEnglish()
     {
@@ -10,7 +18,8 @@ class IndexTest extends PHPUnit_Framework_TestCase
         $_GET = array();
         $_GET["page"] = "page1";
         $_GET["lang"] = "en";
-        include( $GLOBALS["wfTestPage"] );
+        $site = new StubSite();
+        include( $this->indexPage );
     }
 
     public function testTitleFinnish()
@@ -19,7 +28,8 @@ class IndexTest extends PHPUnit_Framework_TestCase
         $_GET = array();
         $_GET["page"] = "page1";
         $_GET["lang"] = "fi";   
-        include( $GLOBALS["wfTestPage"] );
+        $site = new StubSite();
+        include( $this->indexPage );
     }
     
     public function testTitleShownInPage()
@@ -28,7 +38,8 @@ class IndexTest extends PHPUnit_Framework_TestCase
         $_GET = array();
         $_GET["page"] = "page1";
         $_GET["lang"] = "fi";   
-        include( $GLOBALS["wfTestPage"] );      
+        $site = new StubSite();
+        include( $this->indexPage );      
     }
     
     public function testGlobalHeaderShownInPage()
@@ -37,7 +48,8 @@ class IndexTest extends PHPUnit_Framework_TestCase
         $_GET = array();
         $_GET["page"] = "page1";
         $_GET["lang"] = "fi";   
-        include( $GLOBALS["wfTestPage"] );      
+        $site = new StubSite();
+        include( $this->indexPage );      
     }
     
     public function testGlobalHeaderShownAlsoInOtherPage()
@@ -46,7 +58,8 @@ class IndexTest extends PHPUnit_Framework_TestCase
         $_GET = array();
         $_GET["page"] = "page2";
         $_GET["lang"] = "en";   
-        include( $GLOBALS["wfTestPage"] );      
+        $site = new StubSite();
+        include( $this->indexPage );      
     }
 
     public function testGlobalFooterShownInPage()
@@ -55,7 +68,8 @@ class IndexTest extends PHPUnit_Framework_TestCase
         $_GET = array();
         $_GET["page"] = "page2";
         $_GET["lang"] = "fi";   
-        include( $GLOBALS["wfTestPage"] );      
+        $site = new StubSite();
+        include( $this->indexPage );      
     }
     
     public function testGlobalFooterShownAlsoInOtherPage()
@@ -64,7 +78,8 @@ class IndexTest extends PHPUnit_Framework_TestCase
         $_GET = array();
         $_GET["page"] = "page1";
         $_GET["lang"] = "en";   
-        include( $GLOBALS["wfTestPage"] );      
+        $site = new StubSite();
+        include( $this->indexPage );      
     }
 
     public function testSecondPage()
@@ -73,14 +88,16 @@ class IndexTest extends PHPUnit_Framework_TestCase
         $_GET = array();
         $_GET["page"] = "page2";
         $_GET["lang"] = "en";
-        include( $GLOBALS["wfTestPage"] );      
+        $site = new StubSite();
+        include( $this->indexPage );      
     }
     
     public function testNoPageGivenShowsFirstPage(){
         $this->expectOutputRegex( "/<title>Sivu yksi<\/title>/" );
         $_GET = array();
         $_GET["lang"] = "fi";   
-        include( $GLOBALS["wfTestPage"] );
+        $site = new StubSite();
+        include( $this->indexPage );
     }
     
     public function testNoLanguageGivenShowsFirstLanguage()
@@ -88,14 +105,16 @@ class IndexTest extends PHPUnit_Framework_TestCase
         $this->expectOutputRegex( "/<title>Page two<\/title>/" );
         $_GET = array();
         $_GET["page"] = "page2";
-        include( $GLOBALS["wfTestPage"] );      
+        $site = new StubSite();
+        include( $this->indexPage );      
     }
 
     public function testNoPageAndLanguageGivenShowFirstPageAndFirstLanguage()
     {
         $this->expectOutputRegex( "/<title>Page One<\/title>/" );
         $_GET = array();
-        include( $GLOBALS["wfTestPage"] );
+        $site = new StubSite();
+        include( $this->indexPage );
     }
     
     public function testWrongPageShowsFirstPage()
@@ -104,7 +123,8 @@ class IndexTest extends PHPUnit_Framework_TestCase
         $_GET = array();
         $_GET["page"] = "non-existing-page";
         $_GET["lang"] = "en";
-        include( $GLOBALS["wfTestPage"] );      
+        $site = new StubSite();
+        include( $this->indexPage );      
     }
     
 }
