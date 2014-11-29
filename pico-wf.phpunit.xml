@@ -1,6 +1,6 @@
 <phpunit>
     <testsuites>
-        <testsuite name="file-system-backend">
+        <testsuite name="pico-wf">
             <directory>unit-test/FileSystemBackend/</directory>
             <directory>unit-test/pico-wf/</directory>
         </testsuite>

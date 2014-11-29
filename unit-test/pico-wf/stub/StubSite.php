@@ -48,6 +48,14 @@ class StubSite extends Site
         return $this->languages;
     }
     
+    public function getGlobalFooter(){
+        return '<img src="footer.jpg">';
+    }
+    
+    public function getGlobalHeader(){
+        return '<img src="header.jpg">';
+    }
+    
 }
 
 ?>

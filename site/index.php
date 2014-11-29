@@ -7,11 +7,20 @@
 
 <?php
 
-require_once( __DIR__."/pico-wf/FileSystemBackend/FileFactory.php" );
 require_once( __DIR__."/pico-wf/PageRenderer.php" );
 
-$factory = new FileFactory( __DIR__."/contents");
-$site = $factory->makeSite();
+
+// Check whether we are in testing environment. 
+// If yes, $site will be already initialized to its double
+if( !isset( $site ) ){
+    // we are in production environment, intialize $site to normal 
+    // implementation 
+    require_once( __DIR__."/pico-wf/Site.php" );
+    require_once( __DIR__."/pico-wf/FileSystemBackend/FileStringLoader.php" );
+    $site = new Site( new FileStringLoader( __DIR__."/contents") );
+}
+
+
 if( array_key_exists( "page", $_GET ) ){
     $page = $_GET["page"];
 }

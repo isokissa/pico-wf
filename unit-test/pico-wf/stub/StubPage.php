@@ -5,13 +5,13 @@ require_once( "site/pico-wf/Page.php" );
 
 class StubPage extends Page
 {
-
+    private $pageId;
     private $s;
     private $sInLanguage;
 
     public function __construct( $pageId )
-    {
-        parent::__contruct( $pageId );
+    {   
+        $this->pageId = $pageId;
         if( $pageId == "page1" ){
             $this->s = array(
                 "PAGE-ID" => "page1",
@@ -78,10 +78,15 @@ EOS
         }
     }
         
+        
+    public function getPageId(){
+        return $this->pageId;
+    }
+        
     public function getMacro( $name )
     {
         if( !array_key_exists( $name, $this->s ) ){
-            throw new MacroNotFoundException( $name );
+            throw new PageMacroNotFoundException( $name );
         }
         return $this->s[ $name ];
     }
@@ -95,12 +100,12 @@ EOS
     {
         if( in_array( $name, array( "PAGE_ID", "SHORT_TITLE", "TITLE", "CONTENTS" ) ) ){
             if( !array_key_exists( $languageId, $this->sInLanguage ) ){
-                throw new StringInLanguageNotFoundException( $languageId );
+                throw new PageStringInLanguageNotFoundException( $languageId );
             }
             return $this->sInLanguage[ $languageId ][ $name ];
         }
         else{
-            throw new StringInLanguageNotFoundException( $name );
+            throw new PageStringInLanguageNotFoundException( $name );
         }
     }
 

@@ -1,7 +1,8 @@
 <?php
 
 require_once( "site/pico-wf/PageRenderer.php" );
-
+require_once( "site/pico-wf/Site.php" );
+require_once( "stub/StubStringLoader.php" );
 
 class PageRendererTest extends PHPUnit_Framework_TestCase
 {
@@ -10,7 +11,8 @@ class PageRendererTest extends PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->site = $GLOBALS["wfFactory"]->makeSite();
+        $this->stringLoader = new StubStringLoader();
+        $this->site = new Site( $this->stringLoader );
         $this->pageRenderer = $this->site->getPageRenderer( "page1", "en" );
     }
 

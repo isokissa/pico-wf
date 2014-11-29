@@ -1,24 +1,35 @@
 <?php
 
-class FileStringLoader 
-{
+require_once( __DIR__."/../StringLoader.php" );
 
+class FileStringLoader implements StringLoader
+{
+    private $basePath;
     private $strings; 
 
     /**
-     * Throws an exception FileStringLoaderNotFoundException if fileName does not exist
+     * Constructor specific to FileStringLoader
      */
-    public function __construct( $fileName )
+    public function __construct( $basePath )
     {
+        $this->basePath = $basePath;
         $this->strings = array();
-        if( !file_exists( $fileName ) ){
-            throw new FileStringLoaderFileNotFoundException( $fileName );
+        if( !file_exists( $this->basePath ) ){
+            throw new FileStringLoaderBasePathNotFoundException( $this->basePath );
         }
-        $this->initFromFile( $fileName );
+    }
+    
+    public function setContext( $context )
+    {
+        $this->initFromFile( $this->basePath."/".$context );
     }
     
     private function initFromFile( $fileName )
     {
+        if( !file_exists( $fileName ) ){
+            throw new StringLoaderInvalidContextException( $fileName );
+        }
+
         $handle = fopen( $fileName, "r" );
         $multiLineName = "";
         $multiLineValue = "";
@@ -71,7 +82,7 @@ class FileStringLoader
     public function getString( $stringName )
     {
         if( !$this->hasString( $stringName ) ){
-            throw new FileStringLoaderStringNotFoundException( $stringName );
+            throw new StringLoaderStringNotFoundException( $stringName );
         }
         return $this->strings[ $stringName ];
     }
@@ -83,11 +94,9 @@ class FileStringLoader
     
 }
 
-class FileStringLoaderFileNotFoundException extends Exception {}
+class FileStringLoaderBasePathNotFoundException extends Exception {}
 
 class FileStringLoaderFileReadException extends Exception {}
-
-class FileStringLoaderStringNotFoundException extends Exception {}
 
 
 ?>
