@@ -1,1 +1,1 @@
-PATH=$PATH:/opt/lampp/bin/
+PATH=$PATH:./vendor/bin/:/opt/lampp/bin/

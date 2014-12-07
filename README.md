@@ -194,10 +194,10 @@ Type "/opt/lampp/lampp start" to start, and browse to URL http://localhost
 not polute any other directory with files. Therefore, find php
 cli directly from lampp directory: "/opt/lampp/bin/php"
 
-For convenience, include /opt/lampp/bin/ into PATH (the same is also 
+For convenience, include vendor/bin and /opt/lampp/bin/ into PATH (the same is also 
 done in setup.sh): 
 
-    PATH=$PATH:/opt/lampp/bin/
+    PATH=$PATH:./vendor/bin/:/opt/lampp/bin/
 
 To initialize the development environment, do:
 
@@ -213,9 +213,8 @@ instructions. Once Composer is downloaded and installed, run:
 The Development Principle(s)
 ----------------------------
 
-Test-Driven Development is in use and [phpunit](https://github.com/sebastianbergmann/phpunit phpunit) 
-unit-testing framework. If you want to contribute, first write a failing test
-and only then the implementation which makes the test pass. 
+Unit tests are based on [phpunit](https://github.com/sebastianbergmann/phpunit phpunit) 
+unit-testing framework. 
 
 To run all tests, type:
 
